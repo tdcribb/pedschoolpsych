@@ -41,6 +41,8 @@ if ( !defined('ABSPATH')) exit;
 </script>
 
 <link rel="stylesheet" type="text/css" href="/wp-content/themes/responsive/css/psp.css" />
+<link rel="stylesheet" type="text/css" href="/wp-content/themes/responsive/css/psp-mobile.css" />
+
 </head>
 
 <body <?php body_class(); ?>>

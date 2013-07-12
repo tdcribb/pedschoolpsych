@@ -1,27 +1,43 @@
 body {}
+a {color:#979da9;}
+a:hover {color:#00223c;}
 
 /* HEADER */
-#header {background:#fff; padding-top:10px;}
+#header {background:#00335c; padding-top:10px;}
 #header #logo {margin-left:10px; margin-bottom:10px; margin-right:10px;}
 #header #menu-top-navigation {margin-top:0px; margin-right:10px;}
 #header .main-nav #menu-main-navigation-bar {background:none;}
 #header .main-nav .menu {background:none;}
+#header .main-nav .menu li a {
+	-moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -khtml-border-radius: 2px;
+    border-radius: 2px;
+}
 #header .main-nav .menu li#menu-item-11 a {background:#a7bbb0;}
 #header .main-nav .menu li#menu-item-11 a:hover {background:#bde1cd;}
 #header .main-nav .menu li#menu-item-12 a {background:#979da9;}
 #header .main-nav .menu li#menu-item-12 a:hover {background:#b3bac9;}
-#header .main-nav .menu li#menu-item-13 a {background:#c0ad82;}
+#header .main-nav .menu li#menu-item-13 a {background:#a79376;}
 #header .main-nav .menu li#menu-item-13 a:hover {background:#decb9f;}
-#header .main-nav .menu li#menu-item-14 a {background:#beb4bf;}
-#header .main-nav .menu li#menu-item-14 a:hover {background:#ddd2de;}
+#header .main-nav .menu li#menu-item-61 a {background:#beb4bf;}
+#header .main-nav .menu li#menu-item-61 a:hover {background:#ddd2de;}
+#header .main-nav .menu li#menu-item-62 a {background:#386a92;}
+#header .main-nav .menu li#menu-item-62 a:hover {background:#5995c6;}
 #header .main-nav .menu li#menu-item-15 a {background:#b6c0c9;}
 #header .main-nav .menu li#menu-item-15 a:hover {background:#ced8e9;}
-#header .main-nav .menu li a {text-align:center; font-size:14px; line-height:30px; height:30px; color:#00223c; letter-spacing:2px; padding: 0 2em;}
+#header .main-nav .menu li a {text-align:center; font-size:14px; line-height:30px; height:30px; color:#fff; letter-spacing:2px; padding: 0 2em;
+	text-transform:uppercase;}
+#header .main-nav .menu li a:hover {color:#00223c;}
+#header .main-nav .menu .current_page_item a, #header .main-nav .menu .current-menu-item a {color:#00223c;}
+
+.top-menu li a {color:#fff;}
+.top-menu li a:hover {color:#b6c0c9;}
 
 #searchform {margin:7px; max-width:250px; float:right;}
 #searchform-item input[type="text"] {width: auto; max-width:150px;}
 #searchform-item {float: right;}
-#searchform #s {float:left; max-width:150px; margin-right:5px; max-height:25px;}
+#searchform #s {float:left; max-width:150px; margin-right:5px; max-height:25px; border:none;}
 #searchform #searchsubmit {float:right; max-width:60px; max-height:25px; padding-top:2px;}
 
 
@@ -34,7 +50,82 @@ body {}
 .widget_recent_entries ul li, .widget_archive ul li {margin-bottom:15px;}
 .widget_tag_cloud .tagcloud a {width:40%;}
 
+a.blue {background:#667D9A;
+	-moz-linear-gradient(center top , #979DA9, #667D9A)}
+a.blue:hover {background:#386a92;
+	-moz-linear-gradient(center top , #a79376, #00223c)}
 
 /* FOOTER */
 #footer, #footer a {color:#fff;}
-#footer a:hover {color:#d1cfcf;}
+#footer a:hover {color:#b6c0c9;}
+
+
+
+
+
+/* LANDING PAGE CONTENT */
+.page-template-psp-landing-php #wrapper {padding:0px;}
+
+#header .main-nav .menu li#menu-item-65 a {background:#a7bbb0;}
+#header .main-nav .menu li#menu-item-65 a:hover {background:#bde1cd;}
+#header .main-nav .menu li#menu-item-67 a {background:#979da9;}
+#header .main-nav .menu li#menu-item-67 a:hover {background:#b3bac9;}
+#header .main-nav .menu li#menu-item-68 a {background:#b6c0c9;}
+#header .main-nav .menu li#menu-item-68 a:hover {background:#ced8e9;}
+#header .main-nav .menu li#menu-item-66 a {background:#beb4bf;}
+#header .main-nav .menu li#menu-item-66 a:hover {background:#ddd2de;}
+
+.landing-page-section {position:relative; float:left; width:100%; border-bottom:2px double #00355f; min-width:;}
+.landing-page-section .lp-section-title {position:relative; margin:auto; width:45%; height:44px; text-align:center; color:#fff; font-family:"FreightSans Bold";
+    font-size:36px; vertical-align:middle; min-width:245px;}
+.landing-page-section .title-int-box {position:relative; float:left; width:97%; margin-left:1%; margin-top:3px; padding-top:7px; padding-bottom:5px;
+    border:2px solid #fff;}
+/* LP ABOUT US */
+.landing-page-section.about-us-cont {background:#fafcf3;}
+.landing-page-section .about-us {background:#c8cfb3;}
+.lp-about-us-text {position:relative; float:left; width:40%; padding:5%; font-family:"Adobe Caslon Pro"; font-size:18px; color:#00355f; 
+    text-align:center; line-height:36px; min-width:250px;}
+/* LP SERVICES */
+.landing-page-section.services-cont {background:#faf6fb;}
+.lp-services-title {position:relative; margin:auto;}
+.landing-page-section .lp-services {background:#c2b6c4; position:relative; margin:auto; width:45%; height:44px; text-align:center; color:#fff; font-family:"FreightSans Bold";
+    font-size:36px; vertical-align:middle; min-width:225px;}
+.lp-services-text {position:relative; float:left; width:90%; padding:5%; font-family:"Adobe Caslon Pro"; font-size:18px; color:#00355f; 
+    text-align:center; line-height:36px;}
+.lp-contact-text {position:relative; float:left; width:40%; padding:5%; text-align:center; font-size:26px; font-family:"Adobe Caslon Pro"; 
+    line-height:34px; color:#00355f; min-width:315px;}
+.lp-contact-text .lp-email, .lp-contact-text .office-hours {font-size:20px; color:#00355f;}
+.lp-map {position:relative; float:left; width:40%; height:275px; padding:5%; text-align:center; margin-top:25px;}
+/* LP OUR OFFICE */
+.landing-page-section.our-office-cont {background:#ebf1f6; }
+.landing-page-section .our-office {background:#a7b2bd;}
+/* LP CONTACT US */
+.landing-page-section.contact-us-cont {/*background:#f6f1f7;*/}
+.landing-page-section .contact-us {background:#667d9a;}
+.landing-page-section .lp-form-subtitle {font-family:"Adobe Caslon Pro"; font-size:20px; color:#00355f; width:100%; text-align:center; margin-top:25px;}
+.landing-page-section .lp-contact-form {width:90%; padding:5%; position:relative; float:left;}
+.landing-page-section .lp-contact-form div.wpcf7, .landing-page-section .lp-contact-form .wpcf7-form {width:100%; height:100%; position:relative; float:left; margin:0px;}
+.landing-page-section .lp-contact-form .lp-contact-field {position:relative; float:left; width:50%; text-align:center;}
+.landing-page-section .lp-contact-form label {font-size:18px; font-family:"FreightSans Bold"; color:#00355f; width:100%;
+    margin-bottom:5px; position:relative; float:left; text-align:center;}
+.landing-page-section .lp-contact-form .lp-contact-field input {background:#e5eaef; border:1px solid #00355f; width:290px; height:25px; padding:5px;}
+.landing-page-section .lp-contact-form .lp-contact-mssg-field {position:relative; float:left; width:100%; margin-bottom:25px; text-align:center;}
+.landing-page-section .lp-contact-form textarea {background:#e5eaef; border:1px solid #00355f; width:620px; height:80px; padding:10px;}
+.lp-contact-form .wpcf7-submit {background:url('/images/buttons/contact-form-button.png') no-repeat; color:#fff; width:150px; height:41px;
+    font-size:26px; font-family:"FreightSans Bold"; float:right; position:relative; margin-bottom:25px; border:none; margin-right:60px;}
+.lp-contact-form .wpcf7-submit:hover {background:#667D9A; color:#fff;
+    -moz-box-shadow:  0px 2px 2px 0px #333;
+    -webkit-box-shadow: 0px 2px 5px 0px #333;
+    box-shadow:     0px 2px 2px 0px #333;
+}
+/* LP DOCUMENTS */
+.landing-page-section.documents-cont {background:#f2f0ed;}
+.landing-page-section .documents {background:#c1ad82;}
+.lp-doc-text {position:relative; float:left; width:400px; margin-left:50px; margin-right:50px; margin-top:25px; text-align:center; line-height:25px; margin-bottom:50px;}
+.lp-docs-list {position:relative; float:left; width:325px; margin-left:25px; margin-top:25px; margin-bottom:50px;}
+.lp-docs-list li {line-height:30px;}
+
+.top-link {position:absolute; bottom:5px; right:5px; font-size:12px;}
+
+
+
