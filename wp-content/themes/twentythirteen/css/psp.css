@@ -70,5 +70,16 @@ ul.nav-menu ul a:hover, .nav-menu ul ul a:hover {background:#5476a4; color:#fff;
 .ninja-forms-form .ninja-forms-all-fields-wrap .ninjap-submit-button-wrap input.ninjap-submit-button {margin-left:0px !important; margin-top:20px; color:#fff; background:#00335b;}
 .ninja-forms-form .ninja-forms-all-fields-wrap .ninjap-submit-button-wrap input.ninjap-submit-button:hover {background:#5476a4;}
 
+/* CONTACT */
+.wpcf7-form input, .wpcf7-form textarea {border:2px solid #00335b;}
+.wpcf7-submit {margin-top:10px; color:#fff; background:#00335b;}
+
+
+
+
+
+
+
+
 
 
