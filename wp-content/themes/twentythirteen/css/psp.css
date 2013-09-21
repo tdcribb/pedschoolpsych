@@ -1,0 +1,74 @@
+/* GENERAL */
+#hp-bg {position:fixed; top:0px; left:0px; width:100%; height:100%; z-index:-1;}
+#main, #page {background:none;}
+#primary {max-width:1000px; background:#fff; margin:auto; padding-bottom:50px;}
+.entry-header {display:none;}
+
+/* HEADER */
+.site-header .home-link {text-align:center;}
+#psp-logo {margin-top:25px; margin-bottom:50px; max-width:100%;}
+.site-header .home-link {min-height:100%;}
+
+/* FOOTER */
+footer.site-footer {background:#00335b; color:#fff;}
+
+/* NAVIGATION */
+div.navbar {background:#00335b; border-bottom:2px solid #5476a4;}
+ul.nav-menu, div.nav-menu > ul {text-align:center;}
+.nav-menu li {width:20%; min-width:150px;}
+.nav-menu li a {color:#fff; font-size:16px; font-family:'Sathu'; text-transform:uppercase;}
+.nav-menu li:hover > a, .nav-menu li a:hover {background:#5476a4; color:#fff; text-transform:uppercase;}
+.nav-menu .current_page_item > a, .nav-menu .current_page_ancestor > a, .nav-menu .current-menu-item > a, .nav-menu .current-menu-ancestor > a {background:#5476a4; 
+	font-weight:normal; color:#fff; text-transform:uppercase; font-style:normal;}
+ul.nav-menu ul a, .nav-menu ul ul a {background:#00335b; color:#fff; border:none;}
+ul.nav-menu ul a:hover, .nav-menu ul ul a:hover {background:#5476a4; color:#fff;}
+
+.menu-toggle {color:#fff;}
+
+/* HOMEPAGE */
+#top-banner-container {position:relative; width:100%; min-height:400px; background:#5574a2;}
+#hp-slideshow-container {position:relative; float:left; width:450px; height:350px; margin-top:25px; margin-left:25px; background:#fff; border:2px solid #00335b; }
+#hp-top-content {position:relative; float:left; width:450px; margin-left:25px; color:#fff; text-align:center; margin-top:45px; font-family:'Afta sans'; font-size:18px;}
+#top-banner-container .slideshow-nav, #top-banner-container .pscarousel {display:none;}
+#top-banner-container .slideshow-content a {width:100%;}
+#top-banner-container .slideshow-content img, #top-banner-container .slideshow-wrapper {max-width:396px; max-height:346px;}
+#top-banner-container .portfolio-slideshow, #top-banner-container .slideshow-content {margin:0px;}
+
+#hp-divider {position:relative; margin-top:25px; margin-bottom:25px; text-align:center; width:100%;}
+#hp-divider img {width:90%;}
+
+#hp-bottom-content {position:relative; width:80%; margin-left:10%; text-align:center; font-size:18px; font-family:'Afta sans'; color:#00335b;}
+
+#secondary {display:none;}
+
+#hp-bottom-box-container {position:relative; width:100%; margin-top:25px; min-height:250px;}
+#center-boxes {margin:auto; width:800px;}
+#hp-bottom-box-container .bottom-box {position:relative; float:left; width:250px; height:250px; border:2px solid #00335b; margin-left:8px; margin-right:8px;
+	border-top-left-radius:     15px 15px;
+	border-top-right-radius:    15px 15px;
+	border-bottom-right-radius: 15px 15px;
+	border-bottom-left-radius:  15px 15px;}
+.hp-box-title {position:relative; float:left; width:100%; background:#00335b; color:#fff; font-size:18px; font-family:'Sathu'; font-weight:bold; height:50px; 
+	margin-top:-1px; text-align:center; padding-top:15px;
+	border-top-left-radius:     13px 13px;
+	border-top-right-radius:    13px 13px;}
+.hp-box-content {position:relative; float:left; color:#00335b; font-size:16px; font-family:'Afta sans'; text-align:center; margin-top:15px; width:90%; margin-left:5%;}
+.hp-box-content a {text-decoration: none;}
+#hp-contact-button {position:relative; margin:auto; width:200px; height:60px; color:#fff; background:#5476a4; padding-top:15px; margin-top:15px; font-size:18px;}
+#hp-contact-button:hover {background:#a7bbb0; color:#00335b;}
+
+/* FORMS */
+.form-field-title {font-weight:bold; font-size:18px; margin-top:50px;}
+.ninja-forms-form label {font-weight:bold;}
+.ninja-forms-all-fields-wrap .textarea-wrap.ninja-subquestion-wrap {margin-top:0px;}
+.ninja-forms-all-fields-wrap .ninja-subquestion-wrap label {font-weight:normal;}
+.ninja-forms-all-fields-wrap .ninja-forms-field p {margin-bottom:0px;}
+.ninja-forms-all-fields-wrap .text-wrap {margin-top:25px; margin-right:25px; width:275px; float:left;}
+.ninja-forms-all-fields-wrap .textarea-wrap, .ninja-forms-all-fields-wrap .form-field-title {float:left; width:100%; margin-top:25px;}
+.ninja-forms-all-fields-wrap textarea, .ninja-forms-all-fields-wrap input {border:2px solid #00335b;}
+.ninja-forms-all-fields-wrap .ninjap-submit-button-wrap {float:left;}
+.ninja-forms-form .ninja-forms-all-fields-wrap .ninjap-submit-button-wrap input.ninjap-submit-button {margin-left:0px !important; margin-top:20px; color:#fff; background:#00335b;}
+.ninja-forms-form .ninja-forms-all-fields-wrap .ninjap-submit-button-wrap input.ninjap-submit-button:hover {background:#5476a4;}
+
+
+

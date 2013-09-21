@@ -2,10 +2,6 @@
 
 class acf_field_taxonomy extends acf_field
 {
-
-	var $defaults;
-	
-	
 	/*
 	*  __construct
 	*
@@ -21,9 +17,6 @@ class acf_field_taxonomy extends acf_field
 		$this->name = 'taxonomy';
 		$this->label = __("Taxonomy",'acf');
 		$this->category = __("Relational",'acf');
-		
-		
-		// settings
 		$this->defaults = array(
 			'taxonomy' 			=> 'category',
 			'field_type' 		=> 'checkbox',
@@ -58,10 +51,6 @@ class acf_field_taxonomy extends acf_field
 	
 	function load_value( $value, $post_id, $field )
 	{
-		// vars
-		$field = array_merge($this->defaults, $field);
-		
-		
 		if( $field['load_save_terms'] )
 		{
 			$value = array();
@@ -100,7 +89,6 @@ class acf_field_taxonomy extends acf_field
 	function update_value( $value, $post_id, $field )
 	{
 		// vars
-		$field = array_merge($this->defaults, $field);
 		if( is_array($value) )
 		{
 			$value = array_filter($value);
@@ -138,8 +126,11 @@ class acf_field_taxonomy extends acf_field
 	
 	function format_value_for_api( $value, $post_id, $field )
 	{
-		// defaults
-		$field = array_merge($this->defaults, $field);
+		// no value?
+		if( !$value )
+		{
+			return $value;
+		}
 		
 		
 		// temp convert to array
@@ -188,7 +179,6 @@ class acf_field_taxonomy extends acf_field
 	function create_field( $field )
 	{
 		// vars
-		$field = array_merge($this->defaults, $field);
 		$single_name = $field['name'];
 			
 			
@@ -278,7 +268,6 @@ class acf_field_taxonomy extends acf_field
 	function create_options( $field )
 	{
 		// vars
-		$field = array_merge($this->defaults, $field);
 		$key = $field['name'];
 		
 		?>
@@ -416,7 +405,7 @@ class acf_taxonomy_field_walker extends Walker
 
 	
 	// start_el
-	function start_el( &$output, $term, $depth, $args = array() )
+	function start_el( &$output, $term, $depth = 0, $args = array(), $current_object_id = 0)
 	{
 		// vars
 		$selected = in_array( $term->term_id, $this->field['value'] );
@@ -439,7 +428,7 @@ class acf_taxonomy_field_walker extends Walker
 	
 	
 	//end_el
-	function end_el( &$output, $term, $depth, $args = array() )
+	function end_el( &$output, $term, $depth = 0, $args = array() )
 	{
 		if( in_array($this->field['field_type'], array('checkbox', 'radio')) )
 		{
