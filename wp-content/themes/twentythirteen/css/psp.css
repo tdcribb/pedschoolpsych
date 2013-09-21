@@ -65,15 +65,17 @@ ul.nav-menu ul a:hover, .nav-menu ul ul a:hover {background:#5476a4; color:#fff;
 .ninja-forms-all-fields-wrap .ninja-forms-field p {margin-bottom:0px;}
 .ninja-forms-all-fields-wrap .text-wrap {margin-top:25px; margin-right:25px; width:275px; float:left;}
 .ninja-forms-all-fields-wrap .textarea-wrap, .ninja-forms-all-fields-wrap .form-field-title {float:left; width:100%; margin-top:25px;}
-.ninja-forms-all-fields-wrap textarea, .ninja-forms-all-fields-wrap input {border:2px solid #00335b;}
+.ninja-forms-all-fields-wrap textarea, .ninja-forms-all-fields-wrap input {border:2px solid #e1ecfc; background:#ebf0f8;}
+.ninja-forms-all-fields-wrap textarea:focus, .ninja-forms-all-fields-wrap input:focus {background:#fff;}
 .ninja-forms-all-fields-wrap .ninjap-submit-button-wrap {float:left;}
 .ninja-forms-form .ninja-forms-all-fields-wrap .ninjap-submit-button-wrap input.ninjap-submit-button {margin-left:0px !important; margin-top:20px; color:#fff; background:#00335b;}
 .ninja-forms-form .ninja-forms-all-fields-wrap .ninjap-submit-button-wrap input.ninjap-submit-button:hover {background:#5476a4;}
 
 /* CONTACT */
-.wpcf7-form input, .wpcf7-form textarea {border:2px solid #00335b;}
+.wpcf7-form input, .wpcf7-form textarea {border:2px solid #e1ecfc; background:#ebf0f8;}
+.wpcf7-form input:focus, .wpcf7-form textarea:focus {background:#fff;}
 .wpcf7-form input.wpcf7-submit {margin-top:10px; color:#fff; background:#00335b;}
-
+.wpcf7-form input.wpcf7-submit:hover {background:#5476a4;}
 
 
 
