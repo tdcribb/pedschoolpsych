@@ -28,7 +28,8 @@ ul.nav-menu ul a:hover, .nav-menu ul ul a:hover {background:#5476a4; color:#fff;
 /* HOMEPAGE */
 #top-banner-container {position:relative; width:100%; min-height:400px; background:#5574a2;}
 #hp-slideshow-container {position:relative; float:left; width:450px; height:350px; margin-top:25px; margin-left:25px; background:#fff; border:2px solid #00335b; }
-#hp-top-content {position:relative; float:left; width:450px; margin-left:25px; color:#fff; text-align:center; margin-top:45px; font-family:'Afta sans'; font-size:18px;}
+#hp-top-content {position:relative; float:left; width:450px; margin-left:25px; color:#fff; text-align:center; margin-top:50px; font-family:'Afta sans'; font-size:24px; 
+	line-height:40px; font-weight:bold;}
 #top-banner-container .slideshow-nav, #top-banner-container .pscarousel {display:none;}
 #top-banner-container .slideshow-content a {width:100%;}
 #top-banner-container .slideshow-content img, #top-banner-container .slideshow-wrapper {max-width:396px; max-height:346px;}
