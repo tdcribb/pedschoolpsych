@@ -28,6 +28,7 @@
 	<?php while ( $eval_loop->have_posts() ) : $eval_loop->the_post();?>
 		<div rel="<?php the_title(); ?>" class="service-overlay">
 			<div class="overlay-border"></div>
+			<div class="print-overlay" onclick="window.print()">Print</div>
 			<img class="close-overlay" src="/wp-content/images/buttons/x.png" />
 			<div class="overlay-logo-cont"><img class="overlay-logo" src="/wp-content/images/header/black-logo.png" /></div>
 			<div class="overlay-title"><?php the_title(); ?></div>

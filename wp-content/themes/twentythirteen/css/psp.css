@@ -20,7 +20,7 @@ footer.site-footer a:hover {color:#ebf0f8;}
 div.navbar {background:#00335b; border-bottom:2px solid #5476a4;}
 ul.nav-menu, div.nav-menu > ul {text-align:center; padding-right:0px;}
 .nav-menu li {width:20%; min-width:150px;}
-.nav-menu li a {color:#fff; font-size:16px; font-family:'Sathu'; text-transform:uppercase;}
+.nav-menu li a {color:#fff; font-size:14px; font-family:'Sathu'; text-transform:uppercase;}
 .nav-menu li:hover > a, .nav-menu li a:hover {background:#5476a4; color:#fff; text-transform:uppercase;}
 .nav-menu .current_page_item > a, .nav-menu .current_page_ancestor > a, .nav-menu .current-menu-item > a, .nav-menu .current-menu-ancestor > a {background:#5476a4; 
 	font-weight:normal; color:#fff; text-transform:uppercase; font-style:normal;}
@@ -96,6 +96,8 @@ ul.nav-menu ul a:hover, .nav-menu ul ul a:hover {background:#5476a4; color:#fff;
 #contact-divider{position:relative; margin-top:25px; text-align:center; width:100%;}
 #contact-divider img {width:90%;}
 
+#ninja_forms_form_2_process_msg, #ninja_forms_form_2_response_msg, #ninja_forms_form_1_process_msg, #ninja_forms_form_1_response_msg {font-size:22px;}
+
 /* PROFESSIONAL SERVICES */
 #prof-serv-main-title {position:relative; width:100%; padding-top:25px; color:#00335b; font-size:30px; font-weight:bold; text-align:center;}
 .prof-serv-cont {position:relative; width:100%; min-height:350px; padding-top:25px;}
@@ -126,7 +128,8 @@ ul.nav-menu ul a:hover, .nav-menu ul ul a:hover {background:#5476a4; color:#fff;
 .overlay-content {position:relative; float:left; width:620px; height:300px; margin-left:25px; margin-top:20px; padding-bottom:50px; text-align:center;
 	overflow-y:auto;}
 
-
+.print-overlay {position:absolute; top:15px; left:15px; width:50px; height:20px; font-size:12px; color:#fff; background:#00335b; text-align:center; cursor:pointer; z-index:500;}
+.print-overlay:hover {background:#5476a4;}
 
 
 
