@@ -13,7 +13,7 @@ Template Name: Homepage
 
 			<div id="top-banner-container">
 				<div id="hp-slideshow-container">
-					<?php echo do_shortcode('[slideshow gallery_id="1"]'); ?>
+					<?php echo do_shortcode('[shslideshow id="2"]'); ?>
 				</div>
 				<div id="hp-top-content">
 					<?php echo get_field('homepage_top_content') ?>

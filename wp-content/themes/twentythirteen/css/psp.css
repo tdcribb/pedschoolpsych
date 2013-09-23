@@ -38,6 +38,8 @@ ul.nav-menu ul a:hover, .nav-menu ul ul a:hover {background:#5476a4; color:#fff;
 #top-banner-container .slideshow-content a {width:100%;}
 #top-banner-container .slideshow-content img, #top-banner-container .slideshow-wrapper {max-width:396px; max-height:346px;}
 #top-banner-container .portfolio-slideshow, #top-banner-container .slideshow-content {margin:0px;}
+#top-banner-container div#shslideshow_2 div.slides img, #top-banner-container div#shslideshow_2, #top-banner-container div#shslideshow_2 div.slides {width:446px; height:346px;}
+#top-banner-container div#shslideshow_nav_2 {display:none;}
 
 #hp-divider {position:relative; margin-top:25px; margin-bottom:25px; text-align:center; width:100%;}
 #hp-divider img {width:90%;}
