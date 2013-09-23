@@ -110,13 +110,26 @@ ul.nav-menu ul a:hover, .nav-menu ul ul a:hover {background:#5476a4; color:#fff;
 .serv-title {position:relative; float:left; width:100%; text-align:center; font-size:14px; margin-top:25px; font-weight:bold;}
 .serv-excerpt {position:relative; float:left; width:80%; margin-left:10%; font-size:12px; margin-top:25px; text-align:center; height:85px;}
 .service-view-more {position:relative; float:left; width:100%; text-align:center; margin-top:25px;}
+.service-view-more a {text-decoration:none;}
 .view-more-button {position:relative; margin:auto; width:200px; height:40px; padding-top:7px; background:#00335b; color:#fff;
 	text-transform:uppercase; text-decoration:none; cursor:pointer;}
 .view-more-button:hover {background:#5476a4;}
 
 .service-list-container .consult-cont {width:445px;}
 
-.close-overlay {position:absolute; top:15px; right:15px; width:15px; cursor:pointer; z-index:500;}
+.single .site-header, .single #hp-bg, footer {display:none;}
+.single .single-service-logo-cont {width:100%;}
+.single .single-service-logo {width:100%; max-width:500px; position:relative; margin:auto; margin-bottom:25px; margin-top:25px;}
+.single .single-service-logo-cont, .single .single-service-title, .single .single-service-divider {text-align:center; width:100%;}
+.single .single-service-content {width:90%; position:relative; margin:auto;}
+.single .single-service-divider img {width:90%;}
+.single .single-service-title {font-size:22px; color:#00335b;}
+.single .single-service-divider {margin-top:10px; margin-bottom:20px;}
+.single .print-footer-info {width:100%; text-align:center; margin-top:50px; color:#00335b;}
+
+
+
+/*.close-overlay {position:absolute; top:15px; right:15px; width:15px; cursor:pointer; z-index:500;}
 
 .service-overlay {position:fixed; width:700px; height:475px; padding:5px; display:none; background:#fff; z-index:1000; border:3px solid #00335b;}
 .overlay-border {position:absolute; width:685px; border:2px solid #5476a4; height:98%;}
@@ -129,7 +142,7 @@ ul.nav-menu ul a:hover, .nav-menu ul ul a:hover {background:#5476a4; color:#fff;
 	overflow-y:auto;}
 
 .print-overlay {position:absolute; top:15px; left:15px; width:50px; height:20px; font-size:12px; color:#fff; background:#00335b; text-align:center; cursor:pointer; z-index:500;}
-.print-overlay:hover {background:#5476a4;}
+.print-overlay:hover {background:#5476a4;}*/
 
 
 

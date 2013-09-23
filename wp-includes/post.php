@@ -169,7 +169,7 @@ function create_post_type() {
 
 	$args1 = array(
 		'labels' => array(
-		'name' => __( 'Evaluation Services' ),
+		'name' => __( 'Evaluation Service' ),
 		'singular_name' => __( 'Evaluation Service' )
 	),
 		'public' => true,
@@ -179,7 +179,7 @@ function create_post_type() {
 	);
 	$args2 = array(
 		'labels' => array(
-		'name' => __( 'Consultation Services' ),
+		'name' => __( 'Consultation Service' ),
 		'singular_name' => __( 'Consultation Service' )
 	),
 		'public' => true,
@@ -189,7 +189,7 @@ function create_post_type() {
 	);
 	$args3 = array(
 		'labels' => array(
-		'name' => __( 'Counseling Services' ),
+		'name' => __( 'Counseling Service' ),
 		'singular_name' => __( 'Counseling Service' )
 	),
 		'public' => true,
