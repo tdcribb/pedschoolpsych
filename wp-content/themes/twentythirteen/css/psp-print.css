@@ -1,0 +1,3 @@
+header, #page, .overlay-border, .close-overlay {display:none;}
+.service-overlay {left:0px !important; width:672px; height:100%;}
+.overlay-content {height:100%;}

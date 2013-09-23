@@ -1,0 +1,10 @@
+@media (max-width: 850px) {
+	
+	.prof-serv-title {font-size:14px; padding-top:5px;}
+	
+
+}
+
+@media (max-width: 600px) {
+	.ninja-forms-form-wrap h2 {font-size:16px;}
+}

@@ -32,9 +32,15 @@
   		var $ = jQuery.noConflict();
 	</script>
 	<link rel="stylesheet" type="text/css" media="all" href="/wp-content/themes/twentythirteen/css/psp.css" />
+	<link rel="stylesheet" type="text/css" media="all" href="/wp-content/themes/twentythirteen/css/psp-mobile.css" />
+	<link rel="stylesheet" href="/wp-content/themes/twentythirteen/css/psp-print.css" type="text/css" media="print" />
+	<script src="/wp-content/themes/twentythirteen/js/psp.js"></script>
 </head>
 
 <body <?php body_class(); ?>>
+
+	<div id="page-fade"></div>
+
 	<div id="page" class="hfeed site">
 		<header id="masthead" class="site-header" role="banner">
 			<a class="home-link" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">

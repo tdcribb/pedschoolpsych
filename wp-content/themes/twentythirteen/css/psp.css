@@ -3,6 +3,7 @@
 #main, #page {background:none;}
 #primary {max-width:1000px; background:#fff; margin:auto; padding-bottom:50px;}
 .entry-header {display:none;}
+#page-fade {position:fixed; top:0px; left:0px; width:100%; height:100%; background:#00335b; opacity:0.5; z-index:900; display:none;}
 
 /* HEADER */
 .site-header .home-link {text-align:center;}
@@ -10,11 +11,14 @@
 .site-header .home-link {min-height:100%;}
 
 /* FOOTER */
-footer.site-footer {background:#00335b; color:#fff;}
+footer.site-footer {background:#00335b; color:#fff; padding-bottom:20px;}
+footer.site-footer a {color:#fff; position:relative; float:left; text-decoration:none; margin-left:20px;}
+footer.site-footer a:hover {color:#ebf0f8;}
+#site-credit {position:relative; float:right; margin-right:20px;}
 
 /* NAVIGATION */
 div.navbar {background:#00335b; border-bottom:2px solid #5476a4;}
-ul.nav-menu, div.nav-menu > ul {text-align:center;}
+ul.nav-menu, div.nav-menu > ul {text-align:center; padding-right:0px;}
 .nav-menu li {width:20%; min-width:150px;}
 .nav-menu li a {color:#fff; font-size:16px; font-family:'Sathu'; text-transform:uppercase;}
 .nav-menu li:hover > a, .nav-menu li a:hover {background:#5476a4; color:#fff; text-transform:uppercase;}
@@ -60,11 +64,13 @@ ul.nav-menu ul a:hover, .nav-menu ul ul a:hover {background:#5476a4; color:#fff;
 
 /* FORMS */
 .form-field-title {font-weight:bold; font-size:18px; margin-top:50px;}
+.ninja-forms-form-wrap h2 {text-transform:uppercase;}
 .ninja-forms-form label {font-weight:bold;}
 .ninja-forms-all-fields-wrap .textarea-wrap.ninja-subquestion-wrap {margin-top:0px;}
 .ninja-forms-all-fields-wrap .ninja-subquestion-wrap label {font-weight:normal;}
 .ninja-forms-all-fields-wrap .ninja-forms-field p {margin-bottom:0px;}
 .ninja-forms-all-fields-wrap .text-wrap {margin-top:25px; margin-right:25px; width:275px; float:left;}
+.ninja-forms-all-fields-wrap .spam-wrap {margin-top:25px; width:100%; float:left;}
 .ninja-forms-all-fields-wrap .textarea-wrap, .ninja-forms-all-fields-wrap .form-field-title {float:left; width:100%; margin-top:25px;}
 .ninja-forms-all-fields-wrap textarea, .ninja-forms-all-fields-wrap input {border:2px solid #e1ecfc; background:#ebf0f8;}
 .ninja-forms-all-fields-wrap textarea:focus, .ninja-forms-all-fields-wrap input:focus {background:#fff;}
@@ -73,14 +79,52 @@ ul.nav-menu ul a:hover, .nav-menu ul ul a:hover {background:#5476a4; color:#fff;
 .ninja-forms-form .ninja-forms-all-fields-wrap .ninjap-submit-button-wrap input.ninjap-submit-button:hover {background:#5476a4;}
 
 /* CONTACT */
+.page-template-contact-php #primary article {padding-top:10px;}
+
+.contact-title {position:relative; width:100%; font-size:30px; font-weight:bold; margin-bottom:20px;}
 .wpcf7-form input, .wpcf7-form textarea {border:2px solid #e1ecfc; background:#ebf0f8;}
 .wpcf7-form input:focus, .wpcf7-form textarea:focus {background:#fff;}
 .wpcf7-form input.wpcf7-submit {margin-top:10px; color:#fff; background:#00335b;}
 .wpcf7-form input.wpcf7-submit:hover {background:#5476a4;}
 
+#top-contact-container {position:relative; width:100%; background:#5476a4; padding-top:25px; padding-bottom:25px;}
+#map-container {position:relative; margin:auto; width:600px; height:300px; border:2px solid #00335b;}
+#contact-info {position:relative; width:100%; text-align:center; margin-top:10px; color:#fff;}
+#contact-info .contact-name {font-size:16px; font-weight:bold;}
+#contact-info .contact-email a {text-decoration:none; color:#fff;}
+#contact-info .contact-email a:hover {color:#00335b;}
+#contact-divider{position:relative; margin-top:25px; text-align:center; width:100%;}
+#contact-divider img {width:90%;}
 
+/* PROFESSIONAL SERVICES */
+#prof-serv-main-title {position:relative; width:100%; padding-top:25px; color:#00335b; font-size:30px; font-weight:bold; text-align:center;}
+.prof-serv-cont {position:relative; width:100%; min-height:350px; padding-top:25px;}
+.prof-serv-title {position:relative; margin:auto; width:80%; margin-left:10%; height:60px; padding-top:20px; background:#5476a4; color:#fff; text-align:center;
+	font-size:18px; font-weight:bold; font-family:'Sathu'; text-transform:uppercase; }
 
+.service-list-container {position:relative; margin:auto; width:900px; height:500px;}
 
+.serv-title-cont {position:relative; float:left; width:300px; padding:10px; min-height:75px;}
+.serv-title {position:relative; float:left; width:100%; text-align:center; font-size:14px; margin-top:25px; font-weight:bold;}
+.serv-excerpt {position:relative; float:left; width:80%; margin-left:10%; font-size:12px; margin-top:25px; text-align:center; height:85px;}
+.service-view-more {position:relative; float:left; width:100%; text-align:center; margin-top:25px;}
+.view-more-button {position:relative; margin:auto; width:200px; height:40px; padding-top:7px; background:#00335b; color:#fff;
+	text-transform:uppercase; text-decoration:none; cursor:pointer;}
+.view-more-button:hover {background:#5476a4;}
+
+.service-list-container .consult-cont {width:445px;}
+
+.close-overlay {position:absolute; top:15px; right:15px; width:15px; cursor:pointer; z-index:500;}
+
+.service-overlay {position:fixed; width:700px; height:475px; padding:5px; display:none; background:#fff; z-index:1000; border:3px solid #00335b;}
+.overlay-border {position:absolute; width:685px; border:2px solid #5476a4; height:98%;}
+.overlay-logo-cont {position:relative; width:100%; float:left; text-align: center;}
+.overlay-logo {position:relative; margin-top:10px; width:300px;}
+.overlay-title {position:relative; float:left; width:100%; text-align:center; margin-top:15px; font-size:18px; font-weight:bold; margin-bottom:10px;}
+.overlay-divider {position:relative; float:left; width:100%; text-align:center;}
+.overlay-divider img {width:90%;}
+.overlay-content {position:relative; float:left; width:620px; height:300px; margin-left:25px; margin-top:20px; padding-bottom:50px; text-align:center;
+	overflow-y:auto;}
 
 
 

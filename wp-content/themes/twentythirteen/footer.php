@@ -16,12 +16,36 @@
 			<?php get_sidebar( 'main' ); ?>
 
 			<div class="site-info">
-				<?php do_action( 'twentythirteen_credits' ); ?>
-				<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'twentythirteen' ) ); ?>" title="<?php esc_attr_e( 'Semantic Personal Publishing Platform', 'twentythirteen' ); ?>"><?php printf( __( 'Proudly powered by %s', 'twentythirteen' ), 'WordPress' ); ?></a>
+				<a href="/contact">Contact and Location</a>
+				<div id="site-credit"><a href="http://lucasandcribb.com">Site Credit: Lucas &amp Cribb</a></div>
 			</div><!-- .site-info -->
 		</footer><!-- #colophon -->
 	</div><!-- #page -->
 
 	<?php wp_footer(); ?>
+
+	<?php $eval_loop = new WP_Query( array( 'post_type' => 'evaluation_service', 'order' => 'ASC' ) ); ?>
+	<?php while ( $eval_loop->have_posts() ) : $eval_loop->the_post();?>
+		<div rel="<?php the_title(); ?>" class="service-overlay">
+			<div class="overlay-border"></div>
+			<img class="close-overlay" src="/wp-content/images/buttons/x.png" />
+			<div class="overlay-logo-cont"><img class="overlay-logo" src="/wp-content/images/header/black-logo.png" /></div>
+			<div class="overlay-title"><?php the_title(); ?></div>
+			<div class="overlay-divider"><img src="/wp-content/images/hp-content/divider.png" /></div>
+			<div class="overlay-content"><?php the_field('service_content') ?></div>
+		</div>
+	<?php endwhile; ?>
+	<?php $cons_loop = new WP_Query( array( 'post_type' => 'consultation_service', 'order' => 'ASC' ) ); ?>
+	<?php while ( $cons_loop->have_posts() ) : $cons_loop->the_post();?>
+		<div rel="<?php the_title(); ?>" class="service-overlay">
+			<div class="overlay-border"></div>
+			<img class="close-overlay" src="/wp-content/images/buttons/x.png" />
+			<div class="overlay-logo-cont"><img class="overlay-logo" src="/wp-content/images/header/black-logo.png" /></div>
+			<div class="overlay-title"><?php the_title(); ?></div>
+			<div class="overlay-divider"><img src="/wp-content/images/hp-content/divider.png" /></div>
+			<div class="overlay-content"><?php the_field('service_content') ?></div>
+		</div>
+	<?php endwhile; ?>
+
 </body>
 </html>
