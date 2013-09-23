@@ -117,7 +117,7 @@ ul.nav-menu ul a:hover, .nav-menu ul ul a:hover {background:#5476a4; color:#fff;
 
 .service-list-container .consult-cont {width:445px;}
 
-.single .site-header, .single #hp-bg, footer {display:none;}
+.single .site-header, .single #hp-bg, .single footer {display:none;}
 .single .single-service-logo-cont {width:100%;}
 .single .single-service-logo {width:100%; max-width:500px; position:relative; margin:auto; margin-bottom:25px; margin-top:25px;}
 .single .single-service-logo-cont, .single .single-service-title, .single .single-service-divider {text-align:center; width:100%;}
