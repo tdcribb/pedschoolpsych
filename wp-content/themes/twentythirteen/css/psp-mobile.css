@@ -1,10 +1,35 @@
 @media (max-width: 850px) {
 	
-	.prof-serv-title {font-size:14px; padding-top:5px;}
+	.prof-serv-title {font-size:14px; padding-top:5px; margin-left:0px;}
+	.service-list-container {width:100%;}
+	.service-list-container .consult-cont, .serv-title-cont, footer.site-footer {width:100%;}
+	.prof-serv-title, .site-main, #primary, footer.site-footer {float:left;}
+
+	#hp-slideshow-container {display:none;}
+	#hp-top-content {width:96%; margin-left:2%; margin-right:2%;}
+	.prof-serv-title, .site-main, #primary, footer.site-footer {width:100%;}
+	#center-boxes {width:100%;}
+	#hp-bottom-box-container .bottom-box {margin:auto; margin-top:10px; float:none;}
+	#top-banner-container {min-height:300px;}
 	
+	footer.site-footer a {margin-left:10px;}
+	#site-credit {margin-right:10px;}
 
 }
 
 @media (max-width: 600px) {
 	.ninja-forms-form-wrap h2 {font-size:16px;}
+	.nav-menu li {position:relative; float:left; min-width:50%;}
+	.nav-menu li a {font-size:10px; padding:10px;}
+
+	
+	#hp-top-content {font-size:15px; margin-top:25px; line-height:30px;}
+	
+	#hp-bottom-content {font-size:12px;}
+	
+}
+
+@media (max-width: 320px) {
+	#map-container {width:300px;}
+	.page-template-contact-php #primary article {padding-left:5px; padding-right:5px;}
 }

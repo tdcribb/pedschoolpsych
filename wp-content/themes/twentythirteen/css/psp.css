@@ -102,17 +102,19 @@ ul.nav-menu ul a:hover, .nav-menu ul ul a:hover {background:#5476a4; color:#fff;
 
 /* PROFESSIONAL SERVICES */
 #prof-serv-main-title {position:relative; width:100%; padding-top:25px; color:#00335b; font-size:30px; font-weight:bold; text-align:center;}
-.prof-serv-cont {position:relative; width:100%; min-height:350px; padding-top:25px;}
-.prof-serv-title {position:relative; margin:auto; width:80%; margin-left:10%; height:60px; padding-top:20px; background:#5476a4; color:#fff; text-align:center;
-	font-size:18px; font-weight:bold; font-family:'Sathu'; text-transform:uppercase; }
+.prof-serv-cont {position:relative; width:100%; min-height:450px; margin-top:25px;}
+.prof-serv-title {position:relative; margin:auto; width:80%; margin-left:10%; height:60px; margin-top:25px; background:none; color:#00335b; text-align:center;
+	font-size:20px; font-weight:bold; font-family:'Sathu'; text-transform:uppercase; }
+.service-divider-cont {position:relative; float:left; width:100%; margin-top:25px; text-align:center; margin-bottom:25px;}
+.service-divider {width:90%;}
 
-.service-list-container {position:relative; margin:auto; width:900px; height:500px;}
+.service-list-container {position:relative; margin:auto; width:900px; height:400px; padding-top:50px;}
 
 .serv-title-cont {position:relative; float:left; width:300px; padding:10px; min-height:75px;}
-.serv-title {position:relative; float:left; width:100%; text-align:center; font-size:14px; margin-top:25px; font-weight:bold;}
-.serv-excerpt {position:relative; float:left; width:80%; margin-left:10%; font-size:12px; margin-top:25px; text-align:center; height:85px;}
-.service-view-more {position:relative; float:left; width:100%; text-align:center; margin-top:25px;}
-.service-view-more a {text-decoration:none;}
+.serv-title {position:relative; float:left; width:100%; text-align:center; font-size:14px; font-weight:bold;}
+.serv-excerpt {position:relative; float:left; width:80%; margin-left:10%; font-size:12px; margin-top:25px; text-align:center; min-height:100px;}
+.serv-title a {text-decoration:none; color:#5476A4;}
+.serv-title a:hover {text-decoration:underline; color:#00335b;}
 .view-more-button {position:relative; margin:auto; width:200px; height:40px; padding-top:7px; background:#00335b; color:#fff;
 	text-transform:uppercase; text-decoration:none; cursor:pointer;}
 .view-more-button:hover {background:#5476a4;}
