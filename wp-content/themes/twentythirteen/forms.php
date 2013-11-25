@@ -8,7 +8,7 @@ Template Name: Forms
 	<div id="primary" class="forms-page">
 		<?php if ( have_posts() ) : ?>
 			<?php while ( have_posts() ) : the_post(); ?>
-				<div id="prof-serv-main-title">FORMS</div>	
+				<div id="prof-serv-main-title">FORMS</div>
 
 				<div class="service-divider-cont"><img class="service-divider" src="/wp-content/images/hp-content/divider.png" /></div>
 

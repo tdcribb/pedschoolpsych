@@ -19,8 +19,8 @@ footer.site-footer a:hover {color:#ebf0f8;}
 /* NAVIGATION */
 div.navbar {background:#00335b; border-bottom:2px solid #5476a4;}
 ul.nav-menu, div.nav-menu > ul {text-align:center; padding-right:0px;}
-.nav-menu li {width:20%; min-width:150px;}
-.nav-menu li a {color:#fff; font-size:14px; font-family:'Sathu'; text-transform:uppercase;}
+.nav-menu li {width:19%; min-width:125px;}
+.nav-menu li a {color:#fff; font-size:12px; font-family:'Sathu'; text-transform:uppercase;}
 .nav-menu li:hover > a, .nav-menu li a:hover {background:#5476a4; color:#fff; text-transform:uppercase;}
 .nav-menu .current_page_item > a, .nav-menu .current_page_ancestor > a, .nav-menu .current-menu-item > a, .nav-menu .current-menu-ancestor > a {background:#5476a4; 
 	font-weight:normal; color:#fff; text-transform:uppercase; font-style:normal;}
@@ -32,7 +32,7 @@ ul.nav-menu ul a:hover, .nav-menu ul ul a:hover {background:#5476a4; color:#fff;
 /* HOMEPAGE */
 #top-banner-container {position:relative; width:100%; min-height:400px; background:#5574a2;}
 #hp-slideshow-container {position:relative; float:left; width:450px; height:350px; margin-top:25px; margin-left:25px; background:#fff; border:2px solid #00335b; }
-#hp-top-content {position:relative; float:left; width:450px; margin-left:25px; color:#fff; text-align:center; margin-top:50px; font-family:'Afta sans'; font-size:22px; 
+#hp-top-content {position:relative; float:left; width:450px; margin-left:25px; color:#fff; text-align:center; margin-top:60px; font-family:'Afta sans'; font-size:18px; 
 	line-height:40px; font-weight:bold; letter-spacing:2px;}
 #top-banner-container .slideshow-nav, #top-banner-container .pscarousel {display:none;}
 #top-banner-container .slideshow-content a {width:100%;}
@@ -135,6 +135,14 @@ ul.nav-menu ul a:hover, .nav-menu ul ul a:hover {background:#5476a4; color:#fff;
 .form-link {font-size:18px;}
 .forms-page .prof-serv-cont {min-height:250px;}
 .forms-page .prof-serv-cont .service-list-container {height:250px;}
+
+
+/* ABOUT */
+.about-container {position:relative; width:100%;}
+.about-single-cont, .about-title, .about-cont {position:relative; margin:auto; width:90%; text-align:center;}
+.about-single-cont {margin-bottom:20px;}
+.about-title {font-size:20px; font-weight:bold; margin-bottom:20px; text-transform:uppercase;}
+.about-cont {font-size:14px; font-weight:normal;}
 
 
 
