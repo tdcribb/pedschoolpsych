@@ -113,7 +113,7 @@ class Ninja_Forms_Processing {
 	 *
 	 */
 	function setup_submitted_vars() {
-		global $ninja_forms_fields;
+		global $ninja_forms_fields, $wp;
 		$form_ID = $this->data['form_ID'];
 
 		//Get our plugin settings
@@ -124,6 +124,7 @@ class Ninja_Forms_Processing {
 			return '';
 		
 		$this->data['action'] = 'submit';
+		$this->data['form']['form_url'] = $this->get_current_url();
 		$cache = get_transient( $_SESSION['ninja_forms_transient_id'] );
 
 		// If we have fields in our $_POST object, then loop through the $_POST'd field values and add them to our global variable.
@@ -164,7 +165,7 @@ class Ninja_Forms_Processing {
 			$form_data = $form_row['data'];
 
 			if(isset($_REQUEST['_sub_id']) AND !empty($_REQUEST['_sub_id'])){
-				$form_data['sub_id'] = $_REQUEST['_sub_id'];
+				$form_data['sub_id'] = absint ( $_REQUEST['_sub_id'] );
 			}else{
 				$form_data['sub_id'] = '';
 			}
@@ -183,7 +184,6 @@ class Ninja_Forms_Processing {
 				}
 				$this->data['form']['admin_attachments'] = array();
 				$this->data['form']['user_attachments'] = array();
-				$this->data['form']['form_url'] = wp_guess_url();
 			}
 
 		} else if ( $cache !== false ) { // Check to see if we have $_SESSION values from a submission.
@@ -819,6 +819,7 @@ class Ninja_Forms_Processing {
 			$data = $field['data'];
 			$field_id = $field['id'];
 			$user_value = $this->get_field_value( $field_id );
+
 			if ( isset ( $data['payment_total'] ) AND $data['payment_total'] == 1 ) {
 				$calc_method = $data['calc_method'];
 				if ( isset ( $data['calc'] ) ) {
@@ -827,8 +828,9 @@ class Ninja_Forms_Processing {
 				$calc_eq = $data['calc_eq'];
 				$places = $data['calc_places'];
 				$total_field = $field_id;
+				
 				$total_value = number_format( round( $user_value, $places ), $places );					
-
+				
 				break;
 			}
 		}
@@ -1032,57 +1034,70 @@ class Ninja_Forms_Processing {
 		// Loop through the fields
 		foreach ( $this->data['field_data'] as $field ) {
 			$field_value = $this->get_field_value( $field['id'] );
-			switch ( $calc_method ) {
-				case 'auto':
-					// If this field's calc_auto_include is set to 1, then add this field's ID to the list.
-					if ( isset ( $field['data']['calc_auto_include'] ) AND $field['data']['calc_auto_include'] == 1 ) {
-						if ( $field['type'] != '_calc' ) {
-							$calc_value = ninja_forms_field_calc_value( $field['id'], $field_value, $calc_method );
-							if ( $calc_value ) {
-								$tmp_array[] = array( $field['id'] => $calc_value );
-							}
-						} else {
-							// If this is a calc field, then call this same function so that we can get all the fields that contributed to that.
-							$tmp_array[] = $this->get_calc_fields( $field['id'] );
-						}
-					}
-					break;
-				case 'fields':
-					// If this field is in our list of field operations, add this field's ID to our list.
-					if ( $calc_fields != '' ) {
-						foreach ( $calc_fields as $calc ) {
-							if ( $field['id'] == $calc['field'] ) {
-								if ( $field['type'] != '_calc' ) {
-									//echo "FIELD ID: ".$field['id'];
-									$calc_value = ninja_forms_field_calc_value( $field['id'], $field_value, $calc_method );
-									if ( $calc_value ) {
-										$tmp_array[] = array( $field['id'] => $calc_value );
-									}
-								} else {
-									// If this is a calc field, then call this same function so that we can get all the fields that contributed to that.
-									$tmp_array[] = $this->get_calc_fields( $field['id'] );
-								}
-							}
-						}
-					}
-					break;
-				case 'eq':
-					// If this field exists in our equation, then add this field's ID to our list.
-					if ( $calc_eq != '' ) {
-						if ( preg_match("/\bfield_".$field['id']."\b/i", $calc_eq ) ) {
+			// We don't want our field to be added if it's a tax field.
+			if ( $field['type'] != '_tax' ) {
+				switch ( $calc_method ) {
+					case 'auto':
+						// If this field's calc_auto_include is set to 1, then add this field's ID to the list.
+						if ( isset ( $field['data']['calc_auto_include'] ) AND $field['data']['calc_auto_include'] == 1 ) {
 							if ( $field['type'] != '_calc' ) {
 								$calc_value = ninja_forms_field_calc_value( $field['id'], $field_value, $calc_method );
 								if ( $calc_value ) {
 									$tmp_array[] = array( $field['id'] => $calc_value );
 								}
 							} else {
+								if ( $this->get_field_value( $field['id'] ) ) {
+									$tmp_array[] = array( $field['id'] => $this->get_field_value( $field['id'] ) );
+								}
 								// If this is a calc field, then call this same function so that we can get all the fields that contributed to that.
 								$tmp_array[] = $this->get_calc_fields( $field['id'] );
 							}
 						}
-					}
-					break;
+						break;
+					case 'fields':
+						// If this field is in our list of field operations, add this field's ID to our list.
+						if ( $calc_fields != '' ) {
+							foreach ( $calc_fields as $calc ) {
+								if ( $field['id'] == $calc['field'] ) {
+									if ( $field['type'] != '_calc' ) {
+										//echo "FIELD ID: ".$field['id'];
+										$calc_value = ninja_forms_field_calc_value( $field['id'], $field_value, $calc_method );
+										if ( $calc_value ) {
+											$tmp_array[] = array( $field['id'] => $calc_value );
+										}
+									} else {
+										if ( $this->get_field_value( $field['id'] ) ) {
+											$tmp_array[] = array( $field['id'] => $this->get_field_value( $field['id'] ) );
+										}
+										// If this is a calc field, then call this same function so that we can get all the fields that contributed to that.
+										$tmp_array[] = $this->get_calc_fields( $field['id'] );
+									}
+								}
+							}
+						}
+						break;
+					case 'eq':
+						// If this field exists in our equation, then add this field's ID to our list.
+						if ( $calc_eq != '' ) {
+							if ( preg_match("/\bfield_".$field['id']."\b/i", $calc_eq ) ) {
+								if ( $field['type'] != '_calc' ) {
+									$calc_value = ninja_forms_field_calc_value( $field['id'], $field_value, $calc_method );
+									if ( $calc_value ) {
+										$tmp_array[] = array( $field['id'] => $calc_value );
+									}
+								} else {
+									if ( $this->get_field_value( $field['id'] ) ) {
+										$tmp_array[] = array( $field['id'] => $this->get_field_value( $field['id'] ) );
+									}
+									// If this is a calc field, then call this same function so that we can get all the fields that contributed to that.
+									$tmp_array[] = $this->get_calc_fields( $field['id'] );
+								}
+							}
+						}
+						break;
+				}
 			}
+			
 		}
 
 		// Loop through our array and make sure that it's not multi-dimensional.
@@ -1098,7 +1113,7 @@ class Ninja_Forms_Processing {
 				}
 			}
 		}
-		
+
 		return $calc_array;
 	}
 
@@ -1120,6 +1135,18 @@ class Ninja_Forms_Processing {
 			$credit_card['expires'] = $this->data['extra']['_credit_card_expires'];
 			return $credit_card;
 		}
+	}
+
+	/**
+	* Function that gets the current URL of the page, including querystring.
+	*
+	* @since 2.2.47
+	* @return $url string
+	*/
+	function get_current_url() {
+		$protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+		$url = $protocol . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
+		return $url;
 	}
 
 }

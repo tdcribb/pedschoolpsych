@@ -4,7 +4,7 @@ add_action( 'init', 'ninja_forms_preview_form' );
 function ninja_forms_preview_form() {
 	global $ninja_forms_append_page_form_id;
 	if( isset( $_REQUEST['form_id'] ) AND isset($_REQUEST['preview']) ) { //I
-		$form_id = $_REQUEST['form_id'];
+		$form_id = absint( $_REQUEST['form_id'] );
 	} else {
 		$form_id = '';
 	}
@@ -23,7 +23,7 @@ function ninja_forms_preview_form() {
 function ninja_forms_preview_link( $form_id = '', $echo = true ) {
 	if( $form_id == '' ){
 		if( isset( $_REQUEST['form_id'] ) ){
-			$form_id = $_REQUEST['form_id'];
+			$form_id = absint( $_REQUEST['form_id'] );
 		}else{
 			$form_id = '';
 		}
@@ -35,7 +35,11 @@ function ninja_forms_preview_link( $form_id = '', $echo = true ) {
 	//if( '' == $form_data['data']['append_page'] ) {
 	if(!isset($form_data['data']['append_page']) OR empty($form_data['data']['append_page'])){ // See the comment above about this check. !empty will ensure that it's not either empty quotes or null.
 		$opt =  get_option( 'ninja_forms_settings' );
-		$page_id = $opt['preview_id'];
+		if ( isset ( $opt['preview_id'] ) ) {
+			$page_id = $opt['preview_id'];
+		} else {
+			$page_id = '';
+		}
 	} else {
 		$page_id = $form_data['data']['append_page'];
 	}

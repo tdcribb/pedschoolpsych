@@ -141,9 +141,9 @@ function ninja_forms_export_form( $form_id ){
 function ninja_forms_save_impexp_forms($data){
 	global $wpdb, $ninja_forms_admin_update_message;
 	$plugin_settings = get_option("ninja_forms_settings");
-	$form_id = isset( $_REQUEST['form_id'] ) ? $_REQUEST['form_id'] : '';
+	$form_id = isset( $_REQUEST['form_id'] ) ? absint( $_REQUEST['form_id'] ) : '';
 	$update_msg = '';
-	if( $_REQUEST['submit'] == __('Export Form', 'ninja-forms') OR ( isset( $_REQUEST['export_form'] ) AND $_REQUEST['export_form'] == 1 ) ){
+	if( $_REQUEST['submit'] == __('Export Form', 'ninja-forms') OR ( isset( $_REQUEST['export_form'] ) AND absint( $_REQUEST['export_form'] ) == 1 ) ){
 		if($form_id != ''){
 			ninja_forms_export_form( $form_id );
 		}else{
@@ -185,34 +185,6 @@ function ninja_forms_save_impexp_forms($data){
 	return $update_msg;
 }
 
-function ninja_forms_import_form( $data ){
-	global $wpdb;
-	$form = unserialize( $data );
-	$form_fields = $form['field'];
-
-	unset($form['field']);
-	$form = apply_filters( 'ninja_forms_before_import_form', $form );
-	$form['data'] = serialize( $form['data'] );
-	$wpdb->insert(NINJA_FORMS_TABLE_NAME, $form);
-	$form_id = $wpdb->insert_id;
-	$form['id'] = $form_id;
-	if(is_array($form_fields)){
-		for ($x=0; $x < count( $form_fields ); $x++) {
-			$form_fields[$x]['form_id'] = $form_id;
-			$form_fields[$x]['data'] = serialize( $form_fields[$x]['data'] );
-			$old_field_id = $form_fields[$x]['id'];
-			$form_fields[$x]['id'] = NULL;
-			$wpdb->insert( NINJA_FORMS_FIELDS_TABLE_NAME, $form_fields[$x] );
-			$form_fields[$x]['id'] = $wpdb->insert_id;
-			$form_fields[$x]['old_id'] = $old_field_id;
-			$form_fields[$x]['data'] = unserialize( $form_fields[$x]['data'] );
-		}
-	}
-	$form['data'] = unserialize( $form['data'] );
-	$form['field'] = $form_fields;
-	do_action( 'ninja_forms_after_import_form', $form );
-	return $form['id'];
-}
 
 /*
  *
@@ -240,6 +212,15 @@ function ninja_forms_calc_after_import_form( $form ){
 						}
 					}
 				}
+
+				if ( isset ( $field_rows[$y]['data']['calc_eq'] ) AND $field_rows[$y]['data']['calc_eq'] != '' ) {
+					$calc_eq = $field_rows[$y]['data']['calc_eq'];
+					foreach( $form['field'] as $inserted_field ){
+						$calc_eq = str_replace( 'field_'.$inserted_field['old_id'], 'field_'.$inserted_field['id'], $calc_eq );
+					}
+					$field_rows[$y]['data']['calc_eq'] = $calc_eq;
+				}				
+
 				$field_rows[$y]['data'] = serialize( $field_rows[$y]['data'] );
 				$args = array(
 					'update_array' => array(
@@ -251,6 +232,80 @@ function ninja_forms_calc_after_import_form( $form ){
 				);
 				ninja_forms_update_field($args);
 			}
+
+			if ( isset ( $form['data']['success_msg'] ) AND $form['data']['success_msg'] != '' ) {
+				$success_msg = $form['data']['success_msg'];
+				foreach( $form['field'] as $inserted_field ){
+					$success_msg = str_replace( '[ninja_forms_field id='.$inserted_field['old_id'].']', '[ninja_forms_field id='.$inserted_field['id'].']', $success_msg );
+				}
+				$form['data']['success_msg'] = $success_msg;
+			}
+
+			if ( isset ( $form['data']['user_subject'] ) AND $form['data']['user_subject'] != '' ) {
+				$user_subject = $form['data']['user_subject'];
+				foreach( $form['field'] as $inserted_field ){
+					$user_subject = str_replace( '[ninja_forms_field id='.$inserted_field['old_id'].']', '[ninja_forms_field id='.$inserted_field['id'].']', $user_subject );
+				}
+				$form['data']['user_subject'] = $user_subject;
+			}			
+
+			if ( isset ( $form['data']['user_email_msg'] ) AND $form['data']['user_email_msg'] != '' ) {
+				$user_email_msg = $form['data']['user_email_msg'];
+				foreach( $form['field'] as $inserted_field ){
+					$user_email_msg = str_replace( '[ninja_forms_field id='.$inserted_field['old_id'].']', '[ninja_forms_field id='.$inserted_field['id'].']', $user_email_msg );
+				}
+				$form['data']['user_email_msg'] = $user_email_msg;
+			}
+
+			if ( isset ( $form['data']['admin_subject'] ) AND $form['data']['admin_subject'] != '' ) {
+				$admin_subject = $form['data']['admin_subject'];
+				foreach( $form['field'] as $inserted_field ){
+					$admin_subject = str_replace( '[ninja_forms_field id='.$inserted_field['old_id'].']', '[ninja_forms_field id='.$inserted_field['id'].']', $admin_subject );
+				}
+				$form['data']['admin_subject'] = $admin_subject;
+			}			
+
+			if ( isset ( $form['data']['admin_email_msg'] ) AND $form['data']['admin_email_msg'] != '' ) {
+				$admin_email_msg = $form['data']['admin_email_msg'];
+				foreach( $form['field'] as $inserted_field ){
+					$admin_email_msg = str_replace( '[ninja_forms_field id='.$inserted_field['old_id'].']', '[ninja_forms_field id='.$inserted_field['id'].']', $admin_email_msg );
+				}
+				$form['data']['admin_email_msg'] = $admin_email_msg;
+			}
+
+			if ( isset ( $form['data']['mp_confirm_msg'] ) AND $form['data']['mp_confirm_msg'] != '' ) {
+				$mp_confirm_msg = $form['data']['mp_confirm_msg'];
+				foreach( $form['field'] as $inserted_field ){
+					$mp_confirm_msg = str_replace( '[ninja_forms_field id='.$inserted_field['old_id'].']', '[ninja_forms_field id='.$inserted_field['id'].']', $mp_confirm_msg );
+				}
+				$form['data']['mp_confirm_msg'] = $mp_confirm_msg;
+			}
+
+			if ( isset ( $form['data']['save_msg'] ) AND $form['data']['save_msg'] != '' ) {
+				$save_msg = $form['data']['save_msg'];
+				foreach( $form['field'] as $inserted_field ){
+					$save_msg = str_replace( '[ninja_forms_field id='.$inserted_field['old_id'].']', '[ninja_forms_field id='.$inserted_field['id'].']', $save_msg );
+				}
+				$form['data']['save_msg'] = $save_msg;
+			}
+
+			if ( isset ( $form['data']['save_email_msg'] ) AND $form['data']['save_email_msg'] != '' ) {
+				$save_email_msg = $form['data']['save_email_msg'];
+				foreach( $form['field'] as $inserted_field ){
+					$save_email_msg = str_replace( '[ninja_forms_field id='.$inserted_field['old_id'].']', '[ninja_forms_field id='.$inserted_field['id'].']', $save_email_msg );
+				}
+				$form['data']['save_email_msg'] = $save_email_msg;
+			}
+
+			$args = array(
+				'update_array' => array(
+					'data' => serialize( $form['data'] ),
+					),
+				'where' => array(
+					'id' => $form['id'],
+					),
+			);
+			ninja_forms_update_form($args);
 		}
 	}
 }

@@ -46,7 +46,7 @@ function ninja_forms_display_fields($form_id){
 				if( is_object( $ninja_forms_processing)){
 					$sub_id = $ninja_forms_processing->get_form_setting('sub_id');
 				}else if(isset($_REQUEST['sub_id'])){
-					$sub_id = $_REQUEST['sub_id'];
+					$sub_id = absint( $_REQUEST['sub_id'] );
 				}else{
 					$sub_id = '';
 				}
@@ -67,11 +67,21 @@ function ninja_forms_display_fields($form_id){
 				}else{
 					$show_field = true;
 				}
-				
+
 				if( isset( $data['display_style'] ) ){
 					$display_style = $data['display_style'];
 				}else{
 					$display_style = '';
+				}
+
+				if( isset( $data['visible'] ) ){
+					$visible = $data['visible'];
+				}else{
+					$visible = true;
+				}
+
+				if ( $display_style != '' ) {
+					$display_style = 'style="'.$display_style.'"';
 				}
 
 				if ( $display_function != '' AND $show_field ) {
@@ -92,7 +102,7 @@ function ninja_forms_display_fields($form_id){
 						$field_wrap_class = apply_filters( 'ninja_forms_field_wrap_class', $field_wrap_class, $field_id );
 						do_action( 'ninja_forms_display_before_opening_field_wrap', $field_id, $data );
 						?>
-						<div class="<?php echo $field_wrap_class;?>" style="<?php echo $display_style;?>" id="ninja_forms_field_<?php echo $field_id;?>_div_wrap">
+						<div class="<?php echo $field_wrap_class;?>" <?php echo $display_style;?> id="ninja_forms_field_<?php echo $field_id;?>_div_wrap" data-visible="<?php echo $visible;?>">
 						<?php
 						do_action( 'ninja_forms_display_after_opening_field_wrap', $field_id, $data );
 					}
@@ -202,7 +212,7 @@ function ninja_forms_get_field_wrap_class($field_id){
 function ninja_forms_get_field_class($field_id){
 	$field_row = ninja_forms_get_field_by_id($field_id);
 	$field_data = $field_row['data'];
-
+	$field_data = apply_filters( 'ninja_forms_field', $field_data, $field_id );
 	$field_class = 'ninja-forms-field';
 
 	$x = 0;
@@ -280,7 +290,7 @@ function ninja_forms_get_field_class($field_id){
 					break;
 			}
 		}
-		
+
 	}
 
 	if ( isset ( $field_data['payment_sub_total'] ) AND $field_data['payment_sub_total'] == 1 ) {
@@ -288,7 +298,7 @@ function ninja_forms_get_field_class($field_id){
 			$calc_listen = 'ninja-forms-field-calc-listen';
 		}
 	}
-	
+
 	// Check to see if this is a tax field;
 	if ( $field_row['type'] == '_tax' ) {
 		if ( $calc_listen == '' ) {

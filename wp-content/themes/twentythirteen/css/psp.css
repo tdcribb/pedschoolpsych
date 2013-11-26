@@ -74,11 +74,15 @@ ul.nav-menu ul a:hover, .nav-menu ul ul a:hover {background:#5476a4; color:#fff;
 .ninja-forms-all-fields-wrap .text-wrap {margin-top:25px; margin-right:25px; width:275px; float:left;}
 .ninja-forms-all-fields-wrap .spam-wrap {margin-top:25px; width:100%; float:left;}
 .ninja-forms-all-fields-wrap .textarea-wrap, .ninja-forms-all-fields-wrap .form-field-title {float:left; width:100%; margin-top:25px;}
-.ninja-forms-all-fields-wrap textarea, .ninja-forms-all-fields-wrap input {border:2px solid #e1ecfc; background:#ebf0f8;}
+.ninja-forms-all-fields-wrap textarea, .ninja-forms-all-fields-wrap input, select.ninja-forms-field {border:2px solid #e1ecfc; background:#ebf0f8;}
 .ninja-forms-all-fields-wrap textarea:focus, .ninja-forms-all-fields-wrap input:focus {background:#fff;}
-.ninja-forms-all-fields-wrap .ninjap-submit-button-wrap {float:left;}
-.ninja-forms-form .ninja-forms-all-fields-wrap .ninjap-submit-button-wrap input.ninjap-submit-button {margin-left:0px !important; margin-top:20px; color:#fff; background:#00335b;}
-.ninja-forms-form .ninja-forms-all-fields-wrap .ninjap-submit-button-wrap input.ninjap-submit-button:hover {background:#5476a4;}
+.ninja-forms-all-fields-wrap .ninjap-submit-button-wrap, .ninjap-submit-button-wrap {float:left;}
+.ninja-forms-form .ninja-forms-all-fields-wrap .ninja-submit-button-wrap input.ninja-submit-button {margin-left:0px !important; margin-top:20px; color:#fff; background:#00335b;}
+.ninja-forms-form .ninja-forms-all-fields-wrap .ninja-submit-button-wrap input.ninja-submit-button:hover {background:#5476a4;}
+.ninja-subtitle {float:left; width:100%; margin-top:0px; font-weight:bold; font-size:16px;}
+.ninja-forms-all-fields-wrap .ninja-subtitle-wrap {margin-top:0px;}
+.ninja-forms-field-error, .ninja-forms-success-msg {color:#DF0101; font-weight:bold; position:absolute;}
+.ninja-forms-success-msg {position:absolute; bottom:20px; text-transform:uppercase; font-size:18px;}
 
 /* CONTACT */
 .page-template-contact-php #primary article {padding-top:10px;}
@@ -135,7 +139,16 @@ ul.nav-menu ul a:hover, .nav-menu ul ul a:hover {background:#5476a4; color:#fff;
 .form-link {font-size:18px;}
 .forms-page .prof-serv-cont {min-height:250px;}
 .forms-page .prof-serv-cont .service-list-container {height:250px;}
-
+.checkbox-wrap, .list-multi-wrap {min-height:250px; float:left;}
+.ninja-forms-all-fields-wrap .list-checkbox-wrap {min-height:50px; float:left; border:1px solid #000; margin-bottom:0px;}
+.ninja-forms-all-fields-wrap .list-checkbox-wrap ul li {border:1px solid #CCCCCC;}
+.checkbox-wrap label, .list-multi-wrap label, .ninja-forms-all-fields-wrap .list-checkbox-wrap label, .list-checkbox-wrap input {font-weight:normal;}
+.ninja-forms-all-fields-wrap .list-checkbox-wrap label {text-decoration:none;}
+.ninja-forms-all-fields-wrap .list-checkbox-wrap ul li label {text-decoration:none;}
+select.ninja-forms-field option {border:1px solid #E1ECFC;}
+.ninja-forms-form-wrap .ninja-forms-form .ninja-forms-all-fields-wrap .ninja-dev-field-wrap span ul li {padding-left:2px !important; padding-right:4px !important;}
+.ninja-forms-form-wrap .ninja-forms-form .ninja-forms-all-fields-wrap .ninja-dev-field-wrap .ninja-dev-field {margin-left:0px !important; margin-right:2px !important;}
+.ninja-forms-form-wrap .ninja-forms-form .ninja-forms-all-fields-wrap .wp_themeSkin iframe {background:#E1ECFC;}
 
 /* ABOUT */
 .about-container {position:relative; width:100%;}
