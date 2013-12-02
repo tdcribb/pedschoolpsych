@@ -20,11 +20,11 @@ Template Name: Forms
 								<a class="form-link" href="/school-information-form/">School Information Form</a>
 							</div>
 						</div>
-						<div class="serv-title-cont">
+						<!-- <div class="serv-title-cont">
 							<div class="serv-title">
 								<a class="form-link" href="/school-information-form/">School Information Form</a>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 
@@ -38,7 +38,7 @@ Template Name: Forms
 								<a class="form-link" href="/forms/child-and-family-information-form/">Child &amp Family Information Form</a>
 							</div>
 						</div>
-						<div class="serv-title-cont">
+						<!-- <div class="serv-title-cont">
 							<div class="serv-title">
 								<a class="form-link" href="/school-information-form/">School Information Form</a>
 							</div>
@@ -47,7 +47,7 @@ Template Name: Forms
 							<div class="serv-title">
 								<a class="form-link" href="/school-information-form/">School Information Form</a>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 
