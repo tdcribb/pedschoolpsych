@@ -58,7 +58,7 @@ Template Name: Contact Page
 			<div id="contact-info">
 				<div class="contact-name">Pediatric School Psychology Evalutation and Consultation Services</div>
 				<div class="contact-address">3612 Landmark Drive, Suite A</br>Columbia, SC 29204</div>
-				<div class="contact-phone">843.555.1212</div>
+				<div class="contact-phone">803.309.5234</div>
 				<div class="contact-email"><a href="mailto:info@pedschoolpsych.com">info@pedschoolpsych.com</a></div>
 			</div>
 		</div>
