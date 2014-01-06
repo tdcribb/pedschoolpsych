@@ -5,6 +5,9 @@ Template Name: Single Consultation Service
 ?>
 <?php get_header(); ?>
 
+
+
+
 	<div id="primary">
 
 		<?php if ( have_posts() ) : ?>

@@ -21,7 +21,7 @@ Template Name: Professional Services
 						<?php $eval_loop = new WP_Query( array( 'post_type' => 'evaluation_service', 'order' => 'ASC' ) ); ?>
 						<?php while ( $eval_loop->have_posts() ) : $eval_loop->the_post(); $link = get_permalink();?>
 							<div class="serv-title-cont">
-								<div class="serv-title"><a href="<?php echo $link; ?>" target="blank"><?php the_title(); ?></a></div>
+								<div class="serv-title"><span rel="<?php the_title(); ?>"><?php the_title(); ?></span></div>
 								<div class="serv-excerpt"><?php the_field('service_excerpt'); ?></div>
 							</div>
 						<?php endwhile; ?>
@@ -36,7 +36,7 @@ Template Name: Professional Services
 						<?php $cons_loop = new WP_Query( array( 'post_type' => 'consultation_service', 'order' => 'ASC' ) ); ?>
 						<?php while ( $cons_loop->have_posts() ) : $cons_loop->the_post(); $link = get_permalink();?>
 							<div class="serv-title-cont consult-cont">
-								<div class="serv-title"><a href="<?php echo $link; ?>" target="blank"><?php the_title(); ?></a></div>
+								<div class="serv-title"><span rel="<?php the_title(); ?>"><?php the_title(); ?></span></div>
 								<div class="serv-excerpt"><?php the_field('service_excerpt'); ?></div>
 							</div>
 						<?php endwhile; ?>
@@ -52,7 +52,7 @@ Template Name: Professional Services
 						<?php $cons_loop = new WP_Query( array( 'post_type' => 'counseling_service', 'order' => 'ASC' ) ); ?>
 						<?php while ( $cons_loop->have_posts() ) : $cons_loop->the_post(); $link = get_permalink();?>
 							<div class="serv-title-cont">
-								<div class="serv-title"><a href="<?php echo $link; ?>" target="blank"><?php the_title(); ?></a></div>
+								<div class="serv-title"><span rel="<?php the_title(); ?>"><?php the_title(); ?></span></div>
 								<div class="serv-excerpt"><?php the_field('service_excerpt'); ?></div>
 							</div>
 						<?php endwhile; ?>

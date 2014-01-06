@@ -18,6 +18,16 @@ $(document).ready(function() {
 		$('#page-fade').fadeOut()
 	});
 
+	$('.serv-title span').click(function() {
+		var servTitle = $(this).attr('rel');
+		$('.service-overlay').each(function() {
+			var overlayTitle = $(this).attr('rel');
+			if (servTitle == overlayTitle) {
+				$(this).fadeIn();
+			}
+		});
+	});
+
 
 });
 
@@ -34,3 +44,10 @@ function centerServiceOverlay() {
 		newTop = (winH - height) / 2;
 	$('.service-overlay').css({'left':newLeft, 'top':newTop});
 }
+
+
+
+
+
+
+

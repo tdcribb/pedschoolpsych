@@ -28,6 +28,14 @@
 	#hp-bottom-content {font-size:12px;}
 
 	.ninja-forms-all-fields-wrap .list-checkbox-wrap ul li {width:100%;}
+
+	.service-overlay, .overlay-content {width:90%;}
+	.overlay-logo {width:80%;}
+	.service-overlay {height:400px;}
+	.overlay-border {display:none;}
+	.overlay-content {height:235px; margin-left:14px; padding-bottom:25px; font-size:13px;}
+	.print-service {width:270px;}
+	.prof-serv-cont {float:left;}
 	
 }
 
