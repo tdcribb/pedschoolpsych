@@ -178,5 +178,12 @@ select.ninja-forms-field option {border:1px solid #E1ECFC;}
 .print-service {width:300px; height:20px; position:relative; margin:auto; font-size:13px;}
 .print-service-link {position:relative; float:left; width:100%; text-align:center; margin-top:10px;}
 
+/* Page Restriction */
+.entry-content form p label input#log, .entry-content form p label input#pwd {margin-top:10px; margin-bottom:10px;}
+.pagerestrict-p {text-align:center;}
+
+
+
+
 
 
