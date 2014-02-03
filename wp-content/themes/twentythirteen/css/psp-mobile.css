@@ -36,7 +36,7 @@
 	.overlay-content {height:235px; margin-left:14px; padding-bottom:25px; font-size:13px;}
 	.print-service {width:270px;}
 	.prof-serv-cont {float:left;}
-	
+	.flexible-frontend-login {top:135px; right:20px;}
 }
 
 @media (max-width: 320px) {

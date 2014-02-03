@@ -49,6 +49,7 @@
 				<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
 			</a>
 
+			<?php echo do_shortcode('[flexible-frontend-login]'); ?>
 
 			<div id="navbar" class="navbar">
 				<nav id="site-navigation" class="navigation main-navigation" role="navigation">

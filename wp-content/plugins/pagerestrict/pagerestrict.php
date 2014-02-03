@@ -39,7 +39,7 @@ function pr_no_cache_headers () {
 // gets standard page content when page/post is restricted.
 function pr_get_page_content() {
 	$pr_page_content = '
-		<p class="pagerestrict-p">' . pr_get_opt ( 'message' )  . '</p>';
+		<p class="pagerestrict-p psp-bold">' . pr_get_opt ( 'message' )  . '</p>';
 	if ( pr_get_opt ( 'loginform' ) == true ) :
 		if ( ! isset ( $user_login ) )
 			$user_login = '';
@@ -57,14 +57,20 @@ function pr_get_page_content() {
 		';
 		
 		if ( get_option('users_can_register') )
-			$pr_page_content .= '	<a href="' . get_bloginfo ( 'wpurl' ) . '/wp-register.php">Register</a> | ';
+			$pr_page_content .= '	<a href="/register">Register</a> | ';
 
 		$pr_page_content .= '<a href="' . get_bloginfo ( 'wpurl' ) . '/wp-login.php?action=lostpassword">Lost your password?</a>
 		</p>
 		';
+
 		$post->comment_status = 'closed';
 	endif;
+
+
 	return $pr_page_content;
+
+	
+
 }
 
 // Perform the restriction and if restricted replace the page content with a login form
