@@ -155,7 +155,7 @@ class FrontendLogin
 		}
 		if ( $this->show_username )
 		{
-		$html .= "<span id='ffl-logged-in-user'>";
+		$html .= "<span id='ffl-logged-in-user'><a href='/profile/'>";
 			global $current_user; 
 			get_currentuserinfo(); 
 			$displaytype = $this->username_display_type;
@@ -172,7 +172,7 @@ class FrontendLogin
 			default:							
 				$html .= $current_user->display_name;
 			}
-		$html .= " &nbsp;|</span>";
+		$html .= "</a> &nbsp;|</span>";
 		}
 		
 		if ( $this->show_logout_link )

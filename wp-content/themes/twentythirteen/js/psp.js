@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
 	centerServiceOverlay();
+	pageHeight();
 
 	$('.service-view-more .view-more-button').click(function() {
 		var service = $(this).attr('rel');
@@ -33,6 +34,7 @@ $(document).ready(function() {
 
 $(window).resize(function() {
     centerServiceOverlay();
+    pageHeight();
 });
 
 function centerServiceOverlay() {
@@ -45,6 +47,15 @@ function centerServiceOverlay() {
 	$('.service-overlay').css({'left':newLeft, 'top':newTop});
 }
 
+function pageHeight() {
+	var winW = $(window).width(),
+		winH = $(window).height(),
+		headerH = $('#masthead').height(),
+		footerH = $('#colophon').height(),
+		minusH = headerH + footerH,
+		newH = winH - minusH;
+	$('#main, #main #primary').css('min-height',newH);
+}
 
 
 

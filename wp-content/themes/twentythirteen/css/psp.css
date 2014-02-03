@@ -187,12 +187,21 @@ select.ninja-forms-field option {border:1px solid #E1ECFC;}
 /* Regsiter */
 #wpmem_reg form label.text, #wpmem_reg form div.div_text {width:100%; font-family:'Afta sans'; letter-spacing:2px; }
 #wpmem_login form .button_div {margin-top:20px; margin-bottom:20px;}
-#wpmem_reg legend {font-family:'Sathu'; letter-spacing:2px;}
+#wpmem_reg legend, #wpmem_login legend {font-family:'Sathu'; letter-spacing:2px;}
 #wpmem_reg form .button_div .buttons, #wpmem_reg form .req-text {font-family:'Afta sans'; letter-spacing:2px; font-weight:bold;}
 
 /* Login */
 .flexible-frontend-login {position:absolute; top:10px; right:50px; z-index:1000;}
 .ffl-popup-content {z-index:1000;}
 .ffl-close-popup-link {cursor:pointer;}
-#ffl-logged-in-user {color:#fff;}
+#ffl-logged-in-user a, a#ffl-logout-link {color:#fff;}
+#ffl-logged-in-user a:hover, a#ffl-logout-link:hover {color:#CA3C08;}
 
+/* Profile */
+article .entry-content strong {font-family:'Sathu'; font-size:28px;}
+article .entry-content ul {list-style:none;}
+article .entry-content ul code a {color:#5476A4; font-family:'Afta sans'; letter-spacing:2px; font-size:18px; line-height:40px;}
+article .entry-content ul code a:hover {color:#00335b; font-family:'Afta sans'; letter-spacing:2px; }
+
+#wpmem_reg form fieldset label {font-weight:bold;}
+#wpmem_login form fieldset label, #wpmem_login form div.div_text {width:100%; font-family:'Afta sans'; letter-spacing:2px;}
