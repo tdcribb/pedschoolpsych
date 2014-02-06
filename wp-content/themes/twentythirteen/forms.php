@@ -53,41 +53,9 @@ Template Name: Forms
 
 				<div class="service-divider-cont"><img class="service-divider" src="/wp-content/images/hp-content/divider.png" /></div>
 
-				<div class="prof-serv-cont">
-					<div class="prof-serv-title">PATIENT DOCUMENTS</div>
-					<div class="service-list-container">
-						<div class="serv-title-cont">
-							<div class="serv-title">
-								<a class="form-link" href="/school-information-form/">School Information Form</a>
-							</div>
-						</div>
-						<div class="serv-title-cont">
-							<div class="serv-title">
-								<a class="form-link" href="/school-information-form/">School Information Form</a>
-							</div>
-						</div>
-						<div class="serv-title-cont">
-							<div class="serv-title">
-								<a class="form-link" href="/school-information-form/">School Information Form</a>
-							</div>
-						</div>
-						<div class="serv-title-cont">
-							<div class="serv-title">
-								<a class="form-link" href="/school-information-form/">School Information Form</a>
-							</div>
-						</div>
-						<div class="serv-title-cont">
-							<div class="serv-title">
-								<a class="form-link" href="/school-information-form/">School Information Form</a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="service-divider-cont"><img class="service-divider" src="/wp-content/images/hp-content/divider.png" /></div>
 
 				<div class="prof-serv-cont">
-					<div class="prof-serv-title">INFORMATIVE DOCUMENTS</div>
+					<div class="prof-serv-title">INFORMATIONAL DOCUMENTS</div>
 					<div class="service-list-container">
 
 						<?php $eval_loop = new WP_Query( array( 'post_type' => 'pdf_doc', 'order' => 'ASC' ) ); ?>
