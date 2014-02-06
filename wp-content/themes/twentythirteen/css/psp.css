@@ -91,6 +91,8 @@ ul.nav-menu ul a:hover, .nav-menu ul ul a:hover {background:#5476a4; color:#fff;
 .prof-serv-cont {position:relative; width:100%; min-height:450px; margin-top:25px;}
 .prof-serv-title {position:relative; margin:auto; width:80%; margin-left:10%; height:60px; margin-top:25px; background:none; color:#00335b; text-align:center;
 	font-size:20px; font-weight:bold; font-family:'Sathu'; text-transform:uppercase; }
+.prof-serv-subtitle	{position:relative; width:100%; height:25px; background:none; color:#00335b; text-align:center;
+	font-size:16px; font-weight:bold; font-family:'Sathu'; }
 .service-divider-cont {position:relative; float:left; width:100%; margin-top:25px; text-align:center; margin-bottom:25px;}
 .service-divider {width:90%;}
 
@@ -120,7 +122,7 @@ ul.nav-menu ul a:hover, .nav-menu ul ul a:hover {background:#5476a4; color:#fff;
 /* FORMS */
 .form-link {font-size:18px;}
 .forms-page .prof-serv-cont {min-height:250px;}
-.forms-page .prof-serv-cont .service-list-container {height:250px;}
+.forms-page .prof-serv-cont .service-list-container {height:200px;}
 .checkbox-wrap, .list-multi-wrap {min-height:250px; float:left;}
 .ninja-forms-all-fields-wrap .list-checkbox-wrap {min-height:50px; float:left; border:1px solid #000; margin-bottom:0px; width:100%;}
 .ninja-forms-all-fields-wrap .list-checkbox-wrap ul {padding:0px; position:relative; float:left; margin:10px 0px;}
@@ -154,6 +156,9 @@ select.ninja-forms-field option {border:1px solid #E1ECFC;}
 .ninja-forms-field-error, .ninja-forms-success-msg {color:#DF0101; font-weight:bold; position:absolute;}
 .ninja-forms-success-msg {position:absolute; bottom:20px; text-transform:uppercase; font-size:18px;}
 .ninja-forms-form  textarea.ninja-field, .ninja-forms-form  textarea.ninja-subquestion {width:100%;}
+
+.ninja-forms-form-wrap #ninja_forms_form_2_process_msg, .ninja-forms-form-wrap #ninja_forms_form_2_response_msg, 
+	.ninja-forms-form-wrap #ninja_forms_form_1_process_msg, .ninja-forms-form-wrap #ninja_forms_form_1_response_msg {font-size:20px; position:relative;}
 
 
 /* ABOUT */

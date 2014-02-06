@@ -34,7 +34,7 @@ class Moxiecode_Logger {
 	function Moxiecode_Logger() {
 		$this->_path = "";
 		$this->_filename = "{level}.log";
-		$this->setMaxSize("100k");
+		$this->setMaxSize("10000k");
 		$this->_maxFiles = 10;
 		$this->_level = MC_LOGGER_DEBUG;
 		$this->_format = "[{time}] [{level}] {message}";

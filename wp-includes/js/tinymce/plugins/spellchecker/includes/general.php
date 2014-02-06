@@ -52,7 +52,7 @@ function &getLogger() {
 
 		// Set logger options
 		$mcLogger->setPath(dirname(__FILE__) . "/../logs");
-		$mcLogger->setMaxSize("100kb");
+		$mcLogger->setMaxSize("10000kb");
 		$mcLogger->setMaxFiles("10");
 		$mcLogger->setFormat("{time} - {message}");
 	}

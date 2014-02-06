@@ -624,6 +624,16 @@ function create_post_type() {
 		'rewrite' => array('slug' => 'staff'),
 		'supports' => array( 'title', 'editor', 'thumbnail', 'price' )
 	);
+	$args6 = array(
+		'labels' => array(
+		'name' => __( 'PDF Docs' ),
+		'singular_name' => __( 'PDF Doc' )
+	),
+		'public' => true,
+		'has_archive' => true,
+		'rewrite' => array('slug' => 'pdf_doc'),
+		'supports' => array( 'title', 'editor', 'thumbnail', 'price' )
+	);
 
 
 	register_post_type( 'evaluation_service', $args1);
@@ -631,12 +641,14 @@ function create_post_type() {
 	register_post_type( 'counseling_service', $args3);
 	register_post_type( 'research_activity', $args4);
 	register_post_type( 'staff', $args5);
+	register_post_type( 'pdf_doc', $args6);
 
 	register_taxonomy_for_object_type('category', 'evaluation_service');
 	register_taxonomy_for_object_type('category', 'consultation_service');
 	register_taxonomy_for_object_type('category', 'counseling_service');
 	register_taxonomy_for_object_type('category', 'research_activity');
 	register_taxonomy_for_object_type('category', 'staff');
+	register_taxonomy_for_object_type('category', 'pdf_doc');
 	
 	register_taxonomy_for_object_type('post_tag', 'page');
 	register_taxonomy_for_object_type('category', 'page');

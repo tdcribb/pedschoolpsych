@@ -33,7 +33,8 @@ jQuery(document).ready(function(jQuery) {
 
 	if( jQuery.fn.mask ){
 		jQuery(".ninja-forms-mask").each(function(){
-			var mask = this.title;
+			var mask = jQuery(this).data('mask');
+			mask = mask.toString();			
 			jQuery(this).mask(mask);
 		});
 
@@ -53,7 +54,7 @@ jQuery(document).ready(function(jQuery) {
 	}
 
 	if( jQuery.fn.autoNumeric ){
-		jQuery(".ninja-forms-currency").autoNumeric({aSign: ninja_forms_settings.currency_symbol});
+		jQuery(".ninja-forms-currency").autoNumeric({aSign: ninja_forms_settings.currency_symbol, aSep: thousandsSeparator, aDec: decimalPoint});
 	}
 
 	/* * * End Mask JS * * */
@@ -749,7 +750,10 @@ function ninja_forms_update_success_msg(response){
 			jQuery("#ninja_forms_form_" + form_id ).hide();
 		}
 		if(clear_complete == 1 ){
-			jQuery("#ninja_forms_form_" + form_id ).resetForm();
+			jQuery("#ninja_forms_form_" + form_id ).clearForm();
+			if( 'rating' in jQuery("input[type=radio].ninja-forms-star") ) {
+				jQuery("input[type=radio].ninja-forms-star").rating("drain");
+			}
 		}
 	}
 }
@@ -758,7 +762,6 @@ function ninja_forms_update_error_msgs(response){
 	var innerHTML = '';
 	var form_id = response.form_id;
 	var errors = response.errors;
-	var form_id = response.form_id;
 	if(errors != false){
 		for( var propName in errors ){
 			if(errors[propName]['location'] == 'general' ){

@@ -54,7 +54,7 @@ Template Name: Forms
 				<div class="service-divider-cont"><img class="service-divider" src="/wp-content/images/hp-content/divider.png" /></div>
 
 				<div class="prof-serv-cont">
-					<div class="prof-serv-title">SCHOOL FORMS</div>
+					<div class="prof-serv-title">PATIENT DOCUMENTS</div>
 					<div class="service-list-container">
 						<div class="serv-title-cont">
 							<div class="serv-title">
@@ -83,6 +83,26 @@ Template Name: Forms
 						</div>
 					</div>
 				</div>
+
+				<div class="service-divider-cont"><img class="service-divider" src="/wp-content/images/hp-content/divider.png" /></div>
+
+				<div class="prof-serv-cont">
+					<div class="prof-serv-title">INFORMATIVE DOCUMENTS</div>
+					<div class="service-list-container">
+
+						<?php $eval_loop = new WP_Query( array( 'post_type' => 'pdf_doc', 'order' => 'ASC' ) ); ?>
+						<?php while ( $eval_loop->have_posts() ) : $eval_loop->the_post(); ?>
+							<div class="serv-title-cont">
+								<div class="serv-title info-doc">
+									<?php echo the_content(); ?>
+								</div>
+							</div>
+						<?php endwhile; ?>
+
+					</div>
+				</div>
+
+
 
 			<?php endwhile; ?>
 		<?php endif; ?>
