@@ -157,8 +157,7 @@ select.ninja-forms-field option {border:1px solid #E1ECFC;}
 .ninja-forms-success-msg {position:absolute; bottom:20px; text-transform:uppercase; font-size:18px;}
 .ninja-forms-form  textarea.ninja-field, .ninja-forms-form  textarea.ninja-subquestion {width:100%;}
 
-.ninja-forms-form-wrap #ninja_forms_form_2_process_msg, .ninja-forms-form-wrap #ninja_forms_form_2_response_msg, 
-	.ninja-forms-form-wrap #ninja_forms_form_1_process_msg, .ninja-forms-form-wrap #ninja_forms_form_1_response_msg {font-size:20px; position:relative;}
+#ninja_forms_form_2_process_msg, #ninja_forms_form_2_response_msg, #ninja_forms_form_1_process_msg, #ninja_forms_form_1_response_msg {font-size:20px; position:relative;}
 
 
 /* ABOUT */
