@@ -119,6 +119,16 @@ ul.nav-menu ul a:hover, .nav-menu ul ul a:hover {background:#5476a4; color:#fff;
 .single .single-service-divider {margin-top:10px; margin-bottom:20px;}
 .single .print-footer-info {width:100%; text-align:center; margin-top:50px; color:#00335b;}
 
+.single-pdf_doc .site-header, .single-pdf_doc #hp-bg, .single-pdf_doc footer {display:block; }
+.single-pdf_doc .single-service-logo-cont {width:100%;}
+.single-pdf_doc .single-service-logo {width:100%; max-width:500px; position:relative; margin:auto; margin-bottom:25px; margin-top:25px;}
+.single-pdf_doc .single-service-logo-cont, .single-pdf_doc .single-service-title, .single-pdf_doc .single-service-divider {text-align:center; width:100%;}
+.single-pdf_doc .single-service-content {width:90%; position:relative; margin:auto;}
+.single-pdf_doc .single-service-divider img {width:90%;}
+.single-pdf_doc .post-navigation {text-align:center;}
+.single-pdf_doc .post-navigation .nav-links {text-align:center;}
+.single-pdf_doc .post-navigation .nav-links a[rel="next"] {padding-left:20px; padding-right:20px; position:relative; float:none;}
+
 /* FORMS */
 .form-link {font-size:18px;}
 .forms-page .prof-serv-cont {min-height:250px;}
