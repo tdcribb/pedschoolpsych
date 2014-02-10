@@ -61,7 +61,8 @@ ul.nav-menu ul a:hover, .nav-menu ul ul a:hover {background:#5476a4; color:#fff;
 	border-top-left-radius:     13px 13px;
 	border-top-right-radius:    13px 13px;}
 .hp-box-content {position:relative; float:left; color:#00335b; font-size:16px; font-family:'Afta sans'; text-align:center; margin-top:15px; width:90%; margin-left:5%;}
-.hp-box-content a {text-decoration: none;}
+.hp-box-content a {text-decoration: none; color:#5476A4;}
+.hp-box-content a:hover {text-decoration: none; color:#00335B;} 
 #hp-contact-button {position:relative; margin:auto; width:200px; height:60px; color:#fff; background:#5476a4; padding-top:15px; margin-top:15px; font-size:18px;}
 #hp-contact-button:hover {background:#a7bbb0; color:#00335b;}
 
