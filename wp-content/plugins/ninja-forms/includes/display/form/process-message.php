@@ -6,7 +6,7 @@
 
 function ninja_forms_display_process_message($form_id){
 	global $ninja_forms_processing_error, $ninja_forms_processing_response;
-	$plugin_settings = get_option("ninja_forms_settings");
+	$plugin_settings = nf_get_settings();
 	$form_row = ninja_forms_get_form_by_id($form_id);
 	$process_label = __( $plugin_settings['process_label'], 'ninja-forms' );
 

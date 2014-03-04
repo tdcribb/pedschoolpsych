@@ -1,12 +1,11 @@
 <?php
-/*
+/** 
  * Function to register a new field for calculations
  *
  * @since 2.2.28
- * @returns void
+ * @return void
  */
-
-function ninja_forms_register_field_calc(){
+function ninja_forms_register_field_calc() {
 	$args = array(
 		'name' => __( 'Calculation', 'ninja-forms' ),
 		'sidebar' => 'template_fields',
@@ -53,17 +52,15 @@ function ninja_forms_register_field_calc(){
 
 	ninja_forms_register_field( '_calc', $args );
 }
-
 add_action( 'init', 'ninja_forms_register_field_calc' );
 
-/*
- *
+
+/**
  * Function that filters the field LI label on the edit field back-end.
  *
  * @since 2.2.28
- * @returns $li_label
+ * @return $li_label
  */
-
 function ninja_forms_calc_edit_label_filter( $li_label, $field_id ) {
 	$field_row = ninja_forms_get_field_by_id( $field_id );
 	if ( $field_row['type'] == '_calc' ) {
@@ -76,18 +73,16 @@ function ninja_forms_calc_edit_label_filter( $li_label, $field_id ) {
 	}
 	return $li_label;
 }
-
 add_filter( 'ninja_forms_edit_field_li_label', 'ninja_forms_calc_edit_label_filter', 10, 2 );
 
 
-/*
+/**
  * Function that outputs the edit options for our calculation field
  *
  * @since 2.2.28
- * @returns void
+ * @return void
  */
-
-function ninja_forms_field_calc_edit( $field_id, $data ){
+function ninja_forms_field_calc_edit( $field_id, $data ) {
 
 	if ( isset ( $data['calc_name'] ) ) {
 		$calc_name = $data['calc_name'];
@@ -214,7 +209,7 @@ function ninja_forms_field_calc_edit( $field_id, $data ){
 
 	if( $show_help == 1 ){
 		$display_span = '';
-	}else{
+	} else {
 		$display_span = 'display:none;';
 	}
 
@@ -309,13 +304,13 @@ function ninja_forms_field_calc_edit( $field_id, $data ){
 	<?php
 }
 
-/*
+
+/** 
  * Function that outputs the display for our calculation field
  *
  * @since 2.2.28
- * @returns void
+ * @return void
  */
-
 function ninja_forms_field_calc_display( $field_id, $data ){
 
 	if ( isset( $data['default_value'] ) ) {
@@ -371,8 +366,7 @@ function ninja_forms_field_calc_display( $field_id, $data ){
 	}
 }
 
-/*
- *
+/**
  * Function to output specific calculation options for a given field
  *
  * @param int $field_id - ID of the field being edited.
@@ -381,7 +375,6 @@ function ninja_forms_field_calc_display( $field_id, $data ){
  * @since 2.2.28
  * @returns void
  */
-
 function ninja_forms_output_field_calc_row( $field_id, $c = array(), $x = 0 ){
 	global $ninja_forms_fields;
 	$field_row = ninja_forms_get_field_by_id( $field_id );
@@ -439,14 +432,13 @@ function ninja_forms_output_field_calc_row( $field_id, $c = array(), $x = 0 ){
 	<?php
 }
 
-/*
- *
+
+/**
  * Function that runs during pre_processing and calcuates the value of this field.
  *
  * @since 2.2.30
- * @returns void
+ * @return void
  */
-
 function ninja_forms_field_calc_pre_process(){
 	global $ninja_forms_loading, $ninja_forms_processing;
 
@@ -641,6 +633,9 @@ function ninja_forms_field_calc_pre_process(){
 				}
 
 				if ( isset ( $calc_places ) ) {
+					if ( empty( $calc_places ) ) {
+						$calc_places = 0;
+					}
 					$result = number_format( round( $result, $calc_places ), $calc_places );
 				}
 				$result = str_replace( ',', '', $result );
@@ -659,7 +654,8 @@ function ninja_forms_field_calc_pre_process(){
 add_action( 'ninja_forms_pre_process', 'ninja_forms_field_calc_pre_process', 999 );
 add_action( 'ninja_forms_display_pre_init', 'ninja_forms_field_calc_pre_process', 999 );
 
-function ninja_forms_calc_field_loop( $field_id, $calc_eq = '', $result = '' ){
+
+function ninja_forms_calc_field_loop( $field_id, $calc_eq = '', $result = '' ) {
 	global $ninja_forms_loading, $ninja_forms_processing;
 
 	if ( isset ( $ninja_forms_loading ) ) {
@@ -809,15 +805,14 @@ function ninja_forms_calc_field_loop( $field_id, $calc_eq = '', $result = '' ){
 	return $result;
 }
 
-/*
- *
+
+/**
  * Function that filters the list options span and adds the appropriate listener class if there is a calc needed for the field.
  *
  * @since 2.2.28
- * @returns $class
+ * @return $class
  */
-
-function ninja_forms_calc_filter_list_options_span( $class, $field_id ){
+function ninja_forms_calc_filter_list_options_span( $class, $field_id ) {
 	global $ninja_forms_loading, $ninja_forms_processing;
 
 	if ( isset ( $ninja_forms_loading ) ) {
@@ -838,7 +833,7 @@ function ninja_forms_calc_filter_list_options_span( $class, $field_id ){
 		$all_fields = $ninja_forms_processing->get_all_fields();
 	}
 
-	foreach ( $all_fields as $f_id => $user_value ){
+	foreach ( $all_fields as $f_id => $user_value ) {
 
 		if ( isset ( $ninja_forms_loading ) ) {
 			$field = $ninja_forms_loading->get_field_settings( $f_id );
@@ -880,18 +875,16 @@ function ninja_forms_calc_filter_list_options_span( $class, $field_id ){
 
 	return $class;
 }
-
 add_filter( 'ninja_forms_display_list_options_span_class', 'ninja_forms_calc_filter_list_options_span', 10, 2 );
 
-/*
- *
+
+/**
  * Function that takes two variables and our calculation string operator and returns the result.
  *
  * @since 2.2.28
- * @returns int value
+ * @return int value
  */
-
-function ninja_forms_calc_evaluate($op, $value1, $value2 ){
+function ninja_forms_calc_evaluate( $op, $value1, $value2 ) {
 	switch ( $op ) {
 		case 'add':
 			return $value1 + $value2;
@@ -908,14 +901,13 @@ function ninja_forms_calc_evaluate($op, $value1, $value2 ){
 	}
 }
 
-/*
- *
+
+/**
  * Function that returns the calculation value of a field given by field_id if it is to be included in the auto total.
  *
  * @since 2.2.30
- * @returns calc_value
+ * @return calc_value
  */
-
 function ninja_forms_field_calc_value( $field_id, $field_value = '', $calc_method = 'auto' ) {
 	global $ninja_forms_loading, $ninja_forms_processing;
 	

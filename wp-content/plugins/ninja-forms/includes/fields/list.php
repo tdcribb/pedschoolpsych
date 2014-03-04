@@ -612,10 +612,11 @@ function ninja_forms_field_filter_list_data( $form_id ){
 	} else {
 		$all_fields = $ninja_forms_processing->get_all_fields();
 	}
-	$tmp_array = array();
+	
 	// Loop through all of our fields and see if we have any list fields.
 	
 	foreach( $all_fields as $field_id => $user_value ) {
+		$tmp_array = array();
 		if ( isset ( $ninja_forms_loading ) ) {
 			$field = $ninja_forms_loading->get_field_settings( $field_id );
 		} else {
@@ -657,4 +658,4 @@ function ninja_forms_field_filter_list_data( $form_id ){
 	}
 }
 
-add_action( 'ninja_forms_display_init', 'ninja_forms_field_filter_list_data', 9 );
+add_action( 'ninja_forms_display_init', 'ninja_forms_field_filter_list_data' );

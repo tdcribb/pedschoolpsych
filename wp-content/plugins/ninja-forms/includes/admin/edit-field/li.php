@@ -12,7 +12,7 @@ function ninja_forms_edit_field_output_li( $field_id ) {
 	
 	$field_type = $field_row['type'];
 	$field_data = $field_row['data'];
-	$plugin_settings = get_option( 'ninja_forms_settings' );
+	$plugin_settings = nf_get_settings();
 	
 	if ( isset( $ninja_forms_fields[$field_type]['use_li'] ) and $ninja_forms_fields[$field_type]['use_li'] ) {
 

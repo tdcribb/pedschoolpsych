@@ -50,7 +50,7 @@ function ninja_forms_activation(){
 
 	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-	$plugin_settings = get_option( 'ninja_forms_settings' );
+	$plugin_settings = nf_get_settings();
 
 	if( isset( $plugin_settings['version'] ) ){
 		$current_version = $plugin_settings['version'];
@@ -302,7 +302,7 @@ function ninja_forms_activation(){
 function ninja_forms_activation_old_forms_check(){
 	global $wpdb;
 	//Get the current plugin settings.
-	$plugin_settings = get_option( 'ninja_forms_settings' );
+	$plugin_settings = nf_get_settings();
 
 	$current_version = $plugin_settings['version'];
 

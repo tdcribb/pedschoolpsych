@@ -3,7 +3,7 @@ Contributors: kstover, jameslaws, daveshine, mordauk, bftrick, helgatheviking
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
 Requires at least: 3.6
 Tested up to: 3.8.1
-Stable tag: 2.4.2
+Stable tag: 2.5.1
 License: GPLv2 or later
 
 Forms created with a simple drag and drop interface. Contact forms, Email collection forms, or any other form you want on your WordPress site.
@@ -76,27 +76,65 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 2.4.2 =
+= 2.5.1 =
 
 *Bugs:*
 
-* Fixed a bug that caused memory issues when a form has a large number of submissions.
-* Fixed a bug with the label inside position that generated a “call to member function…” error.
-* Fixed a bug that prevented tax totals from working properly with numbers with thousands separators.
-* Fixed a bug that prevented list importing from working with newly created list fields.
-* Fixed a bug with list fields that prevented list options from being re-ordered immediately after being added to the form.
+* Fixed a major bug that removed the "Number" field.
+
+= 2.5 =
+
+*Features:*
+
+* Submission Limiting - Allows users to limit the number of submissions a form can receive.
+* Character Counts - Added a "Character Count" option to textboxes and textareas.
+
+*Bugs:*
+
+* Fixed a bug that prevented the pagination from working on view submission pages.
+* Fixed a bug with the default value filter.
+* Fixed a bug that prevented forms from showing when they were on the landing page of another form.
+* Fixed a bug that caused required fields to go unprocessed when extensions were deactivated.
+* Fixed a bug that caused list fields to pre-populate incorrectly in some instances.
+* Removed some console logs that could cause crashes in Internet Explorer.
+* Fixed a bug that caused forms to improperly clear when submitted.
+* Fixed a bug that prevented empty success messages from being saved.
 
 *Changes:*
 
-* Required fields that use the “inside” label position will now show the required symbol inside the field with the label.
-* Changed the default value filter to respect fields that shouldn’t be processed.
-* Removed code from the field class function that was specific to Conditional Logic. This code should be housed in the extension rather than the core plugin.
+* Add some CSS to help prevent theme from breaking left and right labels when they add display:block to the label element.
+* All settings are now fetched via a proxy function.
+* Added a wrapper for the entire form display (and everything that goes with it).
 
 == Requested Features ==
 
 If you have any feature requests, please feel free to visit [ninjaforms.com](http://ninjaforms.com) and let us know about it.
 
 == Changelog ==
+
+= 2.5 =
+
+*Features:*
+
+* Submission Limiting - Allows users to limit the number of submissions a form can receive.
+* Character Counts - Added a "Character Count" option to textboxes and textareas.
+
+*Bugs:*
+
+* Fixed a bug that prevented the pagination from working on view submission pages.
+* Fixed a bug with the default value filter.
+* Fixed a bug that prevented forms from showing when they were on the landing page of another form.
+* Fixed a bug that caused required fields to go unprocessed when extensions were deactivated.
+* Fixed a bug that caused list fields to pre-populate incorrectly in some instances.
+* Removed some console logs that could cause crashes in Internet Explorer.
+* Fixed a bug that caused forms to improperly clear when submitted.
+* Fixed a bug that prevented empty success messages from being saved.
+
+*Changes:*
+
+* Add some CSS to help prevent theme from breaking left and right labels when they add display:block to the label element.
+* All settings are now fetched via a proxy function.
+* Added a wrapper for the entire form display (and everything that goes with it).
 
 = 2.4.2 =
 

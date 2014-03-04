@@ -1,6 +1,6 @@
 <?php
 
-function ninja_forms_display_js($form_id, $local_vars = ''){
+function ninja_forms_display_js( $form_id, $local_vars = '' ) {
 	global $post, $ninja_forms_display_localize_js, $wp_locale, $ninja_forms_loading, $ninja_forms_processing;
 
 	if ( defined( 'NINJA_FORMS_JS_DEBUG' ) && NINJA_FORMS_JS_DEBUG ) {
@@ -16,27 +16,19 @@ function ninja_forms_display_js($form_id, $local_vars = ''){
 	$qtip = 0;
 	$mask = 0;
 	$currency = 0;
+	$input_limit= 0;
 	$rating = 0;
 	$calc_value = array();
 	$calc_fields = array();
 	$calc_eq = false;
 	$sub_total = false;
 	$tax = false;
-	if ( isset ( $ninja_forms_loading ) ) {
-		$fields = $ninja_forms_loading->get_all_fields();
-	} else {
-		$fields = $ninja_forms_processing->get_all_fields();
-	}
+
+	$fields = ninja_forms_get_fields_by_form_id( $form_id );
 
 	if( is_array( $fields ) AND !empty( $fields ) ){
-		foreach( $fields as $field_id => $user_value ){
+		foreach( $fields as $field ){
 			
-			if ( isset ( $ninja_forms_loading ) ) {
-				$field = $ninja_forms_loading->get_field_settings( $field_id );
-			} else {
-				$field = $ninja_forms_processing->get_field_settings( $field_id );
-			}
-
 			if ( isset ( $field['id'] ) ) {
 				$field_id = $field['id'];
 			} else {
@@ -64,6 +56,11 @@ function ninja_forms_display_js($form_id, $local_vars = ''){
 
 			if( isset( $field['data']['mask'] ) AND $field['data']['mask'] == 'currency' ){
 				$currency = 1;
+			}			
+
+			if( isset( $field['data']['input_limit'] ) AND $field['data']['input_limit'] != '' ){
+				$input_limit = $field['data']['input_limit'];
+				$input_limit_type = $field['data']['input_limit_type'];
 			}
 
 			if( $field_type == '_rating' ){
@@ -165,43 +162,46 @@ function ninja_forms_display_js($form_id, $local_vars = ''){
 	if ( $calc_eq ) {
 		foreach ( $calc_fields as $calc_id => $calc ) {
 			if( $calc['method'] == 'eq' ) {
-				foreach( $fields as $field_id => $user_value ){
-					if ( isset ( $ninja_forms_loading ) ) {
-						$field = $ninja_forms_loading->get_field_settings( $field_id );
-					} else {
-						$field = $ninja_forms_processing->get_field_settings( $field_id );
-					}
+				foreach( $fields as $field ){
+					$field_id = $field['id'];
+
 					if (preg_match("/\bfield_".$field_id."\b/i", $calc['eq'] ) ) {
-						$calc_fields[$calc_id]['fields'][] = $field['id'];
+						$calc_fields[$calc_id]['fields'][] = $field_id;
 					}
 				}
 			}
 		}
 	}
 
-	if( $datepicker == 1 ){
+	if ( $datepicker == 1 ) {
 		wp_enqueue_script( 'jquery-ui-datepicker' );
 	}
 
-	if( $qtip == 1 ){
+	if ( $qtip == 1 ) {
 		wp_enqueue_script( 'jquery-qtip',
 			NINJA_FORMS_URL .'/js/min/jquery.qtip.min.js',
 			array( 'jquery', 'jquery-ui-position' ) );
 	}
 
-	if( $mask == 1 ){
+	if ( $mask == 1 ) {
 		wp_enqueue_script( 'jquery-maskedinput',
 			NINJA_FORMS_URL .'/js/min/jquery.maskedinput.min.js',
 			array( 'jquery' ) );
 	}
 
-	if( $currency == 1 ){
+	if ( $currency == 1 ) {
 		wp_enqueue_script('jquery-autonumeric',
 			NINJA_FORMS_URL .'/js/min/autoNumeric.min.js',
 			array( 'jquery' ) );
 	}
 
-	if( $rating == 1 ){
+	if ( $input_limit != 1 ) {
+		wp_enqueue_script('jquery-char-input-limit',
+			NINJA_FORMS_URL .'/js/dev/word-and-character-counter.js',
+			array( 'jquery' ) );
+	}
+
+	if ( $rating == 1 ) {
 		wp_enqueue_script('jquery-rating',
 			NINJA_FORMS_URL .'/js/min/jquery.rating.min.js',
 			array( 'jquery' ) );
@@ -240,7 +240,7 @@ function ninja_forms_display_js($form_id, $local_vars = ''){
 
 	$calc_settings['calc_fields'] = $calc_fields;
 
-	$plugin_settings = get_option("ninja_forms_settings");
+	$plugin_settings = nf_get_settings();
 	if(isset($plugin_settings['date_format'])){
 		$date_format = $plugin_settings['date_format'];
 	}else{

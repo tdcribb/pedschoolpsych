@@ -7,7 +7,7 @@
 function ninja_forms_display_field_label( $field_id, $data ){
 	global $ninja_forms_fields, $ninja_forms_loading, $ninja_forms_processing;
 
-	$plugin_settings = get_option("ninja_forms_settings");
+	$plugin_settings = nf_get_settings();
 
 	if ( isset ( $ninja_forms_loading ) ) {
 		$field_row = $ninja_forms_loading->get_field_settings( $field_id );
@@ -73,15 +73,16 @@ function ninja_forms_display_field_label( $field_id, $data ){
 
 add_action('ninja_forms_display_field_label', 'ninja_forms_display_field_label', 10, 2);
 
+
+
 function ninja_forms_display_label_inside( $data, $field_id ){
 	global $ninja_forms_loading, $ninja_forms_processing;
 
-	if ( isset ( $ninja_forms_processing ) and $ninja_forms_processing->get_field_value( $field_id ) )
-		return $data;
-
 	if ( isset ( $ninja_forms_loading ) ) {
+		$user_value = $ninja_forms_loading->get_field_value( $field_id );
 		$field_row = $ninja_forms_loading->get_field_settings( $field_id );
 	} else if ( isset ( $ninja_forms_processing ) ) {
+		$user_value = $ninja_forms_processing->get_field_value( $field_id );
 		$field_row = $ninja_forms_processing->get_field_settings( $field_id );
 	}
 
@@ -98,7 +99,7 @@ function ninja_forms_display_label_inside( $data, $field_id ){
 	}
 
 	// Get the required field symbol.
-	$settings = get_option( 'ninja_forms_settings' );
+	$settings = nf_get_settings();
 	if ( isset ( $settings['req_field_symbol'] ) ) {
 		$req_symbol = $settings['req_field_symbol'];
 	} else {
@@ -116,11 +117,19 @@ function ninja_forms_display_label_inside( $data, $field_id ){
 		$label = '';
 	}
 
+	$label = strip_tags( $label );
+
+	$data['label'] = $label;
+
 	if ( $field_type != '_list' ) {
 		if ( $label_pos == 'inside' ) {
 			if ( isset ( $ninja_forms_loading ) ) {
+				if ( !empty( $user_value ) )
+					return $data;
 				$ninja_forms_loading->update_field_value( $field_id, $label );
 			} else {
+				if ( $ninja_forms_processing->get_field_value( $field_id ) )
+					return $data;
 				$ninja_forms_processing->update_field_value( $field_id, $label );
 			}
 		}

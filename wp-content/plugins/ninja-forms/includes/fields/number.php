@@ -49,7 +49,7 @@ add_action( 'init', 'ninja_forms_register_field_number' );
 
 function ninja_forms_field_number_edit( $field_id, $data ) {
 	
-	$plugin_settings = get_option( 'ninja_forms_settings' );
+	$plugin_settings = nf_get_settings();
 
 	$custom = '';
 	// Default Value

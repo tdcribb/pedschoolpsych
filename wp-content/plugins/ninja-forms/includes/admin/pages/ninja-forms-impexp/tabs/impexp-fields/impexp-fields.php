@@ -88,7 +88,7 @@ function ninja_forms_register_exp_fav_fields_metabox(){
 
 function ninja_forms_save_impexp_fields( $data ){
 	global $wpdb, $ninja_forms_admin_update_message;
-	$plugin_settings = get_option( 'ninja_forms_settings' );
+	$plugin_settings = nf_get_settings();
 
 	if($_POST['submit'] == __( 'Export Fields', 'ninja-forms' ) ){
 		if(isset($_POST['ninja_forms_fav']) AND !empty($_POST['ninja_forms_fav'])){

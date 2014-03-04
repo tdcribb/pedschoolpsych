@@ -13,7 +13,7 @@ function ninja_forms_register_tab_view_subs(){
 
 function ninja_forms_tab_view_subs(){
 	global $ninja_forms_fields;
-	$plugin_settings = get_option( 'ninja_forms_settings' );
+	$plugin_settings = nf_get_settings();
 
 	if( isset( $plugin_settings['date_format'] ) AND $plugin_settings['date_format'] != '' ){
 		$date_format = $plugin_settings['date_format'];
@@ -78,6 +78,20 @@ function ninja_forms_tab_view_subs(){
 		$edit_sub_form = '';
 	}
 
+	if( isset( $_REQUEST['limit'] ) AND !empty( $_REQUEST['limit'] ) ){
+		$limit = absint( $_REQUEST['limit'] );
+		$_SESSION['ninja_forms_limit'] = $limit;
+	}else if( isset( $_SESSION['ninja_forms_limit'] ) AND !empty($_SESSION['ninja_forms_limit'] ) ){
+		if ( ( isset ( $_POST['submit'] ) AND !empty( $_REQUEST['limit'] ) ) OR !isset ( $_POST['limit'] ) ) {
+			$limit = $_SESSION['ninja_forms_limit'];
+		} else {
+			$limit = 20;
+		}
+
+	}else{
+		$limit = 20;
+	}
+
 	if($form_id == ''){
 		?>
 		<h2><?php _e( 'View Form Submissions', 'ninja-forms' );?></h2>
@@ -86,13 +100,6 @@ function ninja_forms_tab_view_subs(){
 		</p>
 		<?php
 	}else{
-		if( isset( $_REQUEST['limit'] ) ){
-			$saved_limit = absint( $_REQUEST['limit'] );
-			$limit = absint( $_REQUEST['limit'] );
-		}else{
-			$saved_limit = 20;
-			$limit = 20;
-		}
 
 		if( isset( $_REQUEST['paged']) AND !empty( $_REQUEST['paged'] ) ){
 			$current_page = absint( $_REQUEST['paged'] );
@@ -126,19 +133,11 @@ function ninja_forms_tab_view_subs(){
 			//'11' => '05/06/2012',
 		);
 
+		$sub_count = ninja_forms_get_sub_count( $args );
+
 		$sub_results = ninja_forms_get_subs( $args );
 
 		$sub_results = apply_filters( 'ninja_forms_view_subs_results', $sub_results );
-
-		$sub_count = count( $sub_results );
-
-		if( isset( $_REQUEST['limit'] ) ){
-			$saved_limit = absint( $_REQUEST['limit'] );
-			$limit = absint( $_REQUEST['limit'] );
-		}else{
-			$saved_limit = 20;
-			$limit = 20;
-		}
 
 		if( $sub_count < $limit ){
 			$limit = $sub_count;
@@ -196,11 +195,13 @@ function ninja_forms_tab_view_subs(){
 			</div>
 			<div class="alignleft actions">
 				<select id="" name="limit">
-					<option value="20" <?php selected($saved_limit, 20);?>>20</option>
-					<option value="50" <?php selected($saved_limit, 50);?>>50</option>
-					<option value="100" <?php selected($saved_limit, 100);?>>100</option>
-					<option value="300" <?php selected($saved_limit, 300);?>>300</option>
-					<option value="500" <?php selected($saved_limit, 500);?>>500</option>
+					<option value="20" <?php selected($limit, 20);?>>20</option>
+					<option value="50" <?php selected($limit, 50);?>>50</option>
+					<option value="100" <?php selected($limit, 100);?>>100</option>
+					<option value="300" <?php selected($limit, 300);?>>300</option>
+					<option value="500" <?php selected($limit, 500);?>>500</option>
+					<option value="1000" <?php selected($limit, 500);?>>1000</option>
+					<option value="5000" <?php selected($limit, 500);?>>5000</option>
 				</select>
 				<?php _e('Submissions Per Page', 'ninja-forms');?>
 				<input type="submit" name="submit" value="<?php _e( 'Go', 'ninja-forms' ); ?>" class="button-secondary">
@@ -308,7 +309,7 @@ function ninja_forms_tab_view_subs(){
 		<?php
 		if( is_array( $sub_results ) AND !empty( $sub_results ) AND $edit_sub_form != 1 AND $current_page <= $page_count ){
 
-			for ($i = $start; $i < $end; $i++) {
+			for ($i = 0; $i < $limit; $i++) {
 				$sub = $sub_results[$i];
 				$data = apply_filters( 'ninja_forms_view_sub_data', $sub['data'], $sub['id'] );
 				?>
@@ -348,24 +349,30 @@ function ninja_forms_tab_view_subs(){
 
 						<td id="ninja_forms_sub_<?php echo $sub['id'];?>_field_<?php echo $field_id;?>">
 						<?php
-							foreach($data as $d){
-								if($field_id == $d['field_id']){
-									$user_value = $d['user_value'];
-									$user_value = ninja_forms_stripslashes_deep( $user_value );
-									$user_value = ninja_forms_strip_tags_deep($user_value);
-									$user_value = apply_filters('ninja_forms_view_sub_td', $user_value, $d['field_id'], $sub['id'] );
+							if ( is_array( $data ) ) {
+								foreach( $data as $d ) {
+									if ( $field_id == $d['field_id'] ) {
+										/**
+										 * ninja_forms_view_sub_td hook
+										 * hook in here to format the submission table data cells
+										 *
+										 * @hooked ninja_forms_strip_sub_td_slashes - 10
+										 * @hooked ninja_forms_strip_sub_td_tags - 20
+										 */
+										$user_value = apply_filters('ninja_forms_view_sub_td', $d['user_value'], $d['field_id'], $sub['id'] );
 
-									if(is_array($user_value) AND !empty($user_value)){
-										$y = 1;
-										foreach($user_value as $val){
-											echo ninja_forms_stripslashes_deep($val);
-											if($y != count($user_value)){
-												echo ", ";
+										if(is_array($user_value) AND !empty($user_value)){
+											$y = 1;
+											foreach($user_value as $val){
+												echo ninja_forms_stripslashes_deep($val);
+												if($y != count($user_value)){
+													echo ", ";
+												}
+												$y++;
 											}
-											$y++;
+										}else{
+											echo stripslashes($user_value);
 										}
-									}else{
-										echo stripslashes($user_value);
 									}
 								}
 							}
@@ -565,7 +572,7 @@ function ninja_forms_edit_sub_save_values(){
 
 function ninja_forms_save_view_subs( $form_id, $data = array() ){
 	global $ninja_forms_admin_update_message;
-	$plugin_settings = get_option("ninja_forms_settings");
+	$plugin_settings = nf_get_settings();
 	if( isset( $_POST['submit'] ) AND $_REQUEST['page'] == 'ninja-forms-subs' ){
 		switch( $_POST['submit'] ){
 			case __( 'Apply', 'ninja-forms' ):
@@ -764,5 +771,40 @@ function ninja_forms_sub_table_row_actions_export( $row_actions, $data, $sub_id,
 
 }
 add_filter( 'ninja_forms_sub_table_row_actions', 'ninja_forms_sub_table_row_actions_export', 30, 4 );
+
+
+/**
+ * Remove slashes from the submission form td
+ *
+ * @param  $field_value - the value of the field
+ * @param  $field_id    - the field id
+ * @param  $sub_id      - the submission id
+ * @return string       - the value of the user history field
+ */
+function ninja_forms_strip_sub_td_slashes( $field_value, $field_id, $sub_id ) {
+	
+	// remove slashes
+	$field_value = ninja_forms_stripslashes_deep( $field_value );
+	return $field_value;
+}
+add_filter( 'ninja_forms_view_sub_td', 'ninja_forms_strip_sub_td_slashes', 10, 3 );
+
+
+/**
+ * Remove tags from the submission form td
+ *
+ * @param  $field_value - the value of the field
+ * @param  $field_id    - the field id
+ * @param  $sub_id      - the submission id
+ * @return string       - the value of the user history field
+ */
+function ninja_forms_strip_sub_td_tag( $field_value, $field_id, $sub_id ) {
+
+	// remove tags
+	$field_value = ninja_forms_strip_tags_deep( $field_value );
+	return $field_value;
+}
+add_filter( 'ninja_forms_view_sub_td', 'ninja_forms_strip_sub_td_tag', 20, 3 );
+
 
 ?>

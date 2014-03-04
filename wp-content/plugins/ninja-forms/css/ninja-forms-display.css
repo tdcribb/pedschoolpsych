@@ -109,6 +109,14 @@ a.tooltip span
     background-color: #c3ff88;
     border-color: #8dff1c !important;
 }
+.ninja-forms-cont {
+    position: relative;
+}
+.ninja-forms-cont:after {
+    clear: both;
+    content: "";
+    display: block;
+}
 
 .ninja-forms-form-wrap input,
 .ninja-forms-form-wrap select ,
@@ -136,6 +144,10 @@ a.tooltip span
 .field-wrap.label-right .ninja-forms-field,
 .field-wrap.label-right .ninja-forms-star-rating-control {
     margin-right: 8px;
+}
+.field-wrap.label-right label,
+.field-wrap.label-left label  {
+    display: inline;
 }
 
 .label-above label {

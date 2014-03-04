@@ -26,11 +26,11 @@ if( isset ( $_POST['_ninja_forms_display_submit'] ) AND absint ( $_POST['_ninja_
  */
 
 function ninja_forms_session_class_setup(){
-	if ( isset ( $_SESSION['ninja_forms_transient_id'] ) ) {
+	if ( isset ( $_SESSION['ninja_forms_transient_id'] ) and !is_admin() ) {
 		if ( get_transient( $_SESSION['ninja_forms_transient_id'] ) !== false ) {
 			add_action( 'init', 'ninja_forms_setup_processing_class', 5 );
 		}
-	}
+	} 
 }
 
 add_action( 'init', 'ninja_forms_session_class_setup', 4 );
@@ -121,7 +121,7 @@ function ninja_forms_display_form( $form_id = '' ){
 	if($form_id != ''){ //Make sure that we have an active form_id.
 
 		// Instantiate our loading global singleton.
-		if ( !isset ( $ninja_forms_processing ) ) {
+		if ( !isset ( $ninja_forms_processing ) or ( isset ( $ninja_forms_processing ) and $ninja_forms_processing->get_form_ID() != $form_id ) ) {
 			$ninja_forms_loading = new Ninja_Forms_Loading( $form_id );
 		}
 
@@ -189,6 +189,8 @@ function ninja_forms_display_form( $form_id = '' ){
 
 			do_action('ninja_forms_display_close_form_wrap', $form_id);
 			do_action('ninja_forms_display_after_form_wrap', $form_id);
+
+			do_action( 'ninja_forms_after_form_display', $form_id );
 
 			do_action( 'ninja_forms_display_js', $form_id );
 			do_action( 'ninja_forms_display_css', $form_id );

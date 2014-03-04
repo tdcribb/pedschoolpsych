@@ -24,7 +24,7 @@ if ( !function_exists ( 'ninja_forms_filter_term_ids_for_name' ) ) {
 		}
 		
 		if ( $field_row['type'] == '_list' ) {
-			if ( isset( $field_row['data']['populate_term'] ) ) {
+			if ( isset( $field_row['data']['populate_term'] ) and !empty ( $field_row['data']['populate_term'] ) ) {
 				$tax = $field_row['data']['populate_term'];
 				if ( !is_array( $val ) ) {
 					if ( strpos( $val, "," ) !== false ) {

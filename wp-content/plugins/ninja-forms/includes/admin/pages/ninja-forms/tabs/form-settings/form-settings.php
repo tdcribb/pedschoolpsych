@@ -288,8 +288,27 @@ function ninja_forms_register_form_settings_basic_metabox(){
 				'type' => 'rte',
 				'label' => __( 'Success Message', 'ninja-forms' ),
 				'desc' => __( 'If you want to include field data entered by the user, for instance a name, you can use the following shortcode: [ninja_forms_field id=23] where 23 is the ID of the field you want to insert. This will tell Ninja Forms to replace the bracketed text with whatever input the user placed in that field. You can find the field ID when you expand the field for editing.', 'ninja-forms' ),
-				'default_value' => __( 'Thanks for submitting this form. We&#39;ll get back to you soon.', 'ninja-forms' ),
+				//'default_value' => __( 'Thanks for submitting this form. We&#39;ll get back to you soon.', 'ninja-forms' ),
 				'tr_class' => 'landing-page-hide ' . $success_msg_style,
+			),
+			array(
+				'name' => 'sub_limit_number',
+				'type' => 'number',
+				'desc' => '',
+				'label' => __( 'Limit Submissions', 'ninja-forms' ),
+				'display_function' => '',
+				'desc' => __( 'Select the number of submissions that this form will accept. Leave empty for no limit.', 'ninja-forms' ),
+				'default_value' => '',
+				'tr_class' => '',
+				'min' => 0,
+			),
+			array(
+				'name' => 'sub_limit_msg',
+				'type' => 'rte',
+				'label' => __( 'Limit Reached Message', 'ninja-forms' ),
+				'desc' => __( 'Please enter a message that you would displayed when this form has reached it&#39;s submission limit and will not accept new submissions.', 'ninja-forms' ),
+				//'default_value' => __( 'Submissions are closed.', 'ninja-forms' ),
+				'tr_class' => '',
 			),
 		),
 	);
@@ -356,7 +375,7 @@ function ninja_forms_save_form_settings( $form_id, $data ){
 		if ( !isset ( $form_data['email_from_name'] ) or empty( $form_data['email_from_name'] ) ) {
 			$form_data['email_from_name'] = $email_from['email_from_name'];
 		}
-		
+
 		if ( empty( $form_data['email_from_name'] ) ) {
 			$form_data['email_from_name'] = get_option( 'blogname' );
 		}

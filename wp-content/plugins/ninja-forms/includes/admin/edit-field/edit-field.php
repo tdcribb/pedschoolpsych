@@ -56,7 +56,7 @@ function ninja_forms_edit_field_el_output($field_id, $type, $label = '', $name =
 		break;
 		case 'number':
 		?>
-			<input type="number" class="<?php echo $class;?>" name="<?php echo $name;?>" id="<?php echo $id;?>" value="<?php echo $value;?>" step="0.001" />
+			<input type="number" class="<?php echo $class;?>" name="<?php echo $name;?>" id="<?php echo $id;?>" value="<?php echo $value;?>" />
 		<?php
 		break;
 		case 'checkbox':
@@ -114,7 +114,7 @@ function ninja_forms_edit_field_el_output($field_id, $type, $label = '', $name =
 		<?php
 		break;
 		case 'rte':
-			$plugin_settings = get_option( 'ninja_forms_settings' );
+			$plugin_settings = nf_get_settings();
 			if ( !isset( $plugin_settings['version_2_2_25_rte_fix'] ) OR $plugin_settings['version_2_2_25_rte_fix'] == '' ) {
 				$value = html_entity_decode( $value );
 				$plugin_settings['version_2_2_25_rte_fix'] = 1;

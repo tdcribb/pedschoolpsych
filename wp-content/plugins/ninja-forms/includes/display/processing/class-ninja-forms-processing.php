@@ -118,7 +118,7 @@ class Ninja_Forms_Processing {
 		$form_ID = $this->data['form_ID'];
 
 		//Get our plugin settings
-		$plugin_settings = get_option("ninja_forms_settings");
+		$plugin_settings = nf_get_settings();
 		$req_field_error = __( $plugin_settings['req_field_error'], 'ninja-forms' );
 
 		if ( empty ( $this->data ) )
@@ -126,7 +126,7 @@ class Ninja_Forms_Processing {
 		
 		$this->data['action'] = 'submit';
 		$this->data['form']['form_url'] = $this->get_current_url();
-		$cache = get_transient( $_SESSION['ninja_forms_transient_id'] );
+		$cache = isset( $_SESSION['ninja_forms_transient_id'] ) ? get_transient( $_SESSION['ninja_forms_transient_id'] ) : null;
 
 		// If we have fields in our $_POST object, then loop through the $_POST'd field values and add them to our global variable.
 		if ( isset ( $_POST['_ninja_forms_display_submit'] ) OR isset ( $_POST['_ninja_forms_edit_sub'] ) ) {
@@ -1059,7 +1059,8 @@ class Ninja_Forms_Processing {
 
 		$tmp_array = array();
 		// Loop through the fields
-		foreach ( $this->data['field_data'] as $field ) {
+		foreach ( $this->data['fields'] as $field_id => $user_value ) {
+			$field = $this->data['field_data'][$field_id];
 			$field_value = $this->get_field_value( $field['id'] );
 			// We don't want our field to be added if it's a tax field.
 			if ( $field['type'] != '_tax' ) {

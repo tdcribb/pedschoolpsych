@@ -11,19 +11,12 @@
 function ninja_forms_calc_listen_field_class( $form_id ) {
 	global $ninja_forms_loading, $ninja_forms_processing;
 
-	if ( isset ( $ninja_forms_loading ) ) {
-		$field_results = $ninja_forms_loading->get_all_fields();
-	} else {
-		$field_results = $ninja_forms_processing->get_all_fields();
-	}
+	$field_results = ninja_forms_get_fields_by_form_id( $form_id );
 
-	foreach( $field_results as $field_id => $user_value ) {
-		if ( isset ( $ninja_forms_loading ) ) {
-			$field_row = $ninja_forms_loading->get_field_settings( $field_id );
-		} else {
-			$field_row = $ninja_forms_processing->get_field_settings( $field_id );
-		}
+	foreach( $field_results as $field_row ) {
 		
+		$field_id = $field_row['id'];
+
 		if ( isset ( $field_row['type'] ) ) {
 			$field_type = $field_row['type'];
 		} else {
@@ -36,13 +29,7 @@ function ninja_forms_calc_listen_field_class( $form_id ) {
 
 		$sub_total = false;
 		$tax = false;
-		foreach($field_results as $f_id => $user_value ){
-
-			if ( isset ( $ninja_forms_loading ) ) {
-				$field = $ninja_forms_loading->get_field_settings( $f_id );
-			} else {
-				$field = $ninja_forms_processing->get_field_settings( $f_id );
-			}
+		foreach ( $field_results as $field ) {
 
 			$data = $field['data'];
 
@@ -111,7 +98,7 @@ function ninja_forms_calc_listen_field_class( $form_id ) {
 		} else {
 			$field_class = $ninja_forms_processing->get_field_setting( $field_id, 'field_class' );
 			$field_class .= ' '.$calc_listen;
-			$ninja_forms_processing->update_field_setting( $field_id, 'field_class', $calc_listen );
+			$ninja_forms_processing->update_field_setting( $field_id, 'field_class', $field_class );
 		}
 	}
 }

@@ -1,13 +1,8 @@
 <?php
 
-add_action( 'init', 'ninja_forms_register_inside_label_hidden' );
-function ninja_forms_register_inside_label_hidden(){
-	add_action( 'ninja_forms_display_after_field_function', 'ninja_forms_inside_label_hidden', 10, 2 );
-}
-
 function ninja_forms_inside_label_hidden( $field_id, $data ){
 	if( isset( $data['label_pos'] ) AND $data['label_pos'] == 'inside' ){
-		$plugin_settings = get_option( 'ninja_forms_settings' );
+		$plugin_settings = nf_get_settings();
 
 		if( isset( $data['label'] ) ){
 			$label = $data['label'];
@@ -39,3 +34,5 @@ function ninja_forms_inside_label_hidden( $field_id, $data ){
 		<?php
 	}
 }
+
+add_action( 'ninja_forms_display_after_field_function', 'ninja_forms_inside_label_hidden', 10, 2 );

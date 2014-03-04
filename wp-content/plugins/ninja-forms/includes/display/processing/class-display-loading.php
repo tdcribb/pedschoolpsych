@@ -137,10 +137,19 @@ class Ninja_Forms_Loading {
 			// Check to see if our default value is one of our preset values:
 			get_currentuserinfo();
 			$user_ID 			= $current_user->ID;
-			$user_firstname 	= $current_user->user_firstname;
-		    $user_lastname 		= $current_user->user_lastname;
-		    $user_display_name 	= $current_user->display_name;
-		    $user_email 		= $current_user->user_email;
+			if ( $user_ID and !empty( $user_ID ) ) {
+				$user_firstname 	= $current_user->user_firstname;
+			    $user_lastname 		= $current_user->user_lastname;
+			    $user_display_name 	= $current_user->display_name;
+			    $user_email 		= $current_user->user_email;
+			} else {
+				$user_ID 			= '';
+				$user_firstname 	= '';
+			    $user_lastname 		= '';
+			    $user_display_name 	= '';
+			    $user_email 		= '';
+			}
+
 
 		    if ( is_object ( $post ) ) {
 			    $post_ID 			= $post->ID;
@@ -178,7 +187,7 @@ class Ninja_Forms_Loading {
 					$default_value = $post_url;
 					break;
 				case 'today':
-					$plugin_settings = get_option( 'ninja_forms_settings' );
+					$plugin_settings = nf_get_settings();
 					if ( isset ( $plugin_settings['date_format'] ) ) {
 						$date_format = $plugin_settings['date_format'];
 					} else {

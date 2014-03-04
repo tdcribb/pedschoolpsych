@@ -5,7 +5,7 @@
 **/
 
 function ninja_forms_display_field_help( $field_id, $data ){
-	$plugin_settings = get_option( 'ninja_forms_settings' );
+	$plugin_settings = nf_get_settings();
 
 	if( isset( $data['show_help'] ) ){
 		$show_help = $data['show_help'];

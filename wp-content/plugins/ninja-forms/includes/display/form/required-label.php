@@ -9,7 +9,7 @@ function ninja_forms_register_display_req_items(){
 }
 
 function ninja_forms_display_req_items( $form_id ){
-	$plugin_settings = get_option('ninja_forms_settings');
+	$plugin_settings = nf_get_settings();
 	if(isset($plugin_settings['req_div_label'])){
 		$req_div_label = __( $plugin_settings['req_div_label'], 'ninja-forms' );
 	}else{

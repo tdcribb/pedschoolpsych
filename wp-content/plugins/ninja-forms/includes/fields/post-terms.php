@@ -165,6 +165,8 @@ if ( !function_exists ( 'ninja_forms_register_field_post_terms' ) ) {
 					</label>
 				</li>
 
+				<input type="hidden" name="ninja_forms_field_<?php echo $field_id;?>" value="">
+
 				<div id="<?php echo $field_id;?>_all" class="<?php echo $field_id;?>-tabs-panel tabs-panel" style="display: block;">
 					<ul id="<?php echo $field_id;?>_checklist" class="termchecklist form-no-clear">
 					<?php
@@ -245,6 +247,7 @@ if ( !function_exists ( 'ninja_forms_register_field_post_terms' ) ) {
 			if( !is_object( $all_terms ) AND !isset( $all_terms->errors ) ){
 				$x = 0;
 				?>
+				<input type="hidden" name="ninja_forms_field_<?php echo $field_id;?>" value="">
 				<ul class="termchecklist">
 				<?php
 				foreach( $all_terms as $t ){
