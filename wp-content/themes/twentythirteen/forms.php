@@ -62,9 +62,10 @@ Template Name: Forms
 
 						<?php $eval_loop = new WP_Query( array( 'post_type' => 'pdf_doc', 'order' => 'ASC' ) ); ?>
 						<?php while ( $eval_loop->have_posts() ) : $eval_loop->the_post(); $url = get_permalink(); ?>
+							
 							<div class="serv-title-cont">
 								<div class="serv-title info-doc">
-									<a class="form-link" target="blank" href="<?php echo $url; ?>"><?php the_title(); ?></a>
+									<?php the_content();?>
 								</div>
 							</div>
 						<?php endwhile; ?>
