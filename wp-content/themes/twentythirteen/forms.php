@@ -17,14 +17,14 @@ Template Name: Forms
 					<div class="service-list-container">
 						<div class="serv-title-cont">
 							<div class="serv-title">
-								<a class="form-link" href="/school-information-form/">School Information Form</a>
+								<a class="form-link" href="/forms/school-information-form/">School Information Form</a>
 							</div>
 						</div>
-						<!-- <div class="serv-title-cont">
+						<div class="serv-title-cont">
 							<div class="serv-title">
-								<a class="form-link" href="/school-information-form/">School Information Form</a>
+								<a class="form-link" href="/forms/pre-school-information-form/">Pre School Information Form</a>
 							</div>
-						</div> -->
+						</div>
 					</div>
 				</div>
 
