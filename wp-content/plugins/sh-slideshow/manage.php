@@ -24,7 +24,7 @@ span.sort-icon{
 	width:36px;
 	height:16px;
 	text-align:right;
-	background:url(<?php echo WP_PLUGIN_URL; ?>/sh-slideshow/images/sort.png) left center no-repeat transparent;
+	background:url("<?php echo WP_PLUGIN_URL; ?>/sh-slideshow/images/sort.png") left center no-repeat transparent;
 }
 select.slide_link{
 	float:left;

@@ -109,31 +109,33 @@ function ninja_forms_tab_view_subs(){
 
 		if( $current_page > 1 ){
 			$start = ( ( $current_page - 1 ) * $limit );
-			if( $sub_count < $limit ){
-				$end = $sub_count;
-			}else{
-				$end = $current_page * $limit;
-				//$end = $end - 1;
-			}
+			// if( $sub_count < $limit ){
+			// 	$end = $sub_count;
+			// }else{
+			// 	$end = $current_page * $limit;
+			// 	//$end = $end - 1;
+			// }
 
-			if( $end > $sub_count ){
-				$end = $sub_count;
-			}
+			// if( $end > $sub_count ){
+			// 	$end = $sub_count;
+			// }
 		}else{
 			$start = 0;
-			$end = $limit;
+			//$end = $limit;
 		}
 
-		$args = array(
+		$args = apply_filters( 'ninja_forms_view_subs_args', array(
 			'form_id' => $form_id,
 			'begin_date' => $begin_date,
 			'end_date' => $end_date,
 			'limit' => $start.','.$limit,
-			//'status' => 1,
+			'status' => 1,
 			//'11' => '05/06/2012',
-		);
+		) );
 
 		$sub_count = ninja_forms_get_sub_count( $args );
+
+		$sub_count = apply_filters( 'ninja_forms_view_subs_count', $sub_count );
 
 		$sub_results = ninja_forms_get_subs( $args );
 
@@ -257,7 +259,7 @@ function ninja_forms_tab_view_subs(){
 			<?php
 			}
 			?>
-			</div>
+			
 			<table border="1px" class="wp-list-table widefat fixed posts">
 			<?php
 			//Grab the first few fields attached to our form so that we can create column headers.
@@ -310,82 +312,84 @@ function ninja_forms_tab_view_subs(){
 		if( is_array( $sub_results ) AND !empty( $sub_results ) AND $edit_sub_form != 1 AND $current_page <= $page_count ){
 
 			for ($i = 0; $i < $limit; $i++) {
-				$sub = $sub_results[$i];
-				$data = apply_filters( 'ninja_forms_view_sub_data', $sub['data'], $sub['id'] );
-				?>
-				<tr id="ninja_forms_sub_<?php echo $sub['id'];?>_tr">
-					<th scope="row" class="check-column">
-						<input type="checkbox" id="" name="ninja_forms_sub[]" value="<?php echo $sub['id'];?>" class="ninja-forms-subs-bulk-action">
-					</th>
-					<td>
-						<?php
-							$date = $sub['date_updated'];
-							$date = strtotime($date);
-							$date = date($date_format, $date);
-							echo $date;
-						?>
-						<div class="row-actions">
-							<?php
-							/**
-							 * ninja_forms_sub_table_row_actions hook
-							 * hook in here to allow extra row actions
-							 *
-							 * @hooked ninja_forms_sub_table_row_actions_edit - 10
-							 * @hooked ninja_forms_sub_table_row_actions_delete - 20
-							 * @hooked ninja_forms_sub_table_row_actions_export - 30
-							 */
-							$row_actions = apply_filters( 'ninja_forms_sub_table_row_actions', array(), $data, $sub['id'], $form_id );
-							echo implode(" | ", $row_actions);
-							?>
-						</div>
-					</td>
-				<?php
-					do_action( 'ninja_forms_view_sub_table_row', $form_id, $sub['id'] );
-					$x = 0;
-					while($x <= $col_count){
-						if(isset($field_results[$x]['id'])){
-						$field_id = $field_results[$x]['id'];
+				if ( isset ( $sub_results[$i] ) ) {
+					$sub = $sub_results[$i];
+					$data = apply_filters( 'ninja_forms_view_sub_data', $sub['data'], $sub['id'] );
 					?>
+					<tr id="ninja_forms_sub_<?php echo $sub['id'];?>_tr">
+						<th scope="row" class="check-column">
+							<input type="checkbox" id="" name="ninja_forms_sub[]" value="<?php echo $sub['id'];?>" class="ninja-forms-subs-bulk-action">
+						</th>
+						<td>
+							<?php
+								$date = $sub['date_updated'];
+								$date = strtotime($date);
+								$date = date($date_format, $date);
+								echo $date;
+							?>
+							<div class="row-actions">
+								<?php
+								/**
+								 * ninja_forms_sub_table_row_actions hook
+								 * hook in here to allow extra row actions
+								 *
+								 * @hooked ninja_forms_sub_table_row_actions_edit - 10
+								 * @hooked ninja_forms_sub_table_row_actions_delete - 20
+								 * @hooked ninja_forms_sub_table_row_actions_export - 30
+								 */
+								$row_actions = apply_filters( 'ninja_forms_sub_table_row_actions', array(), $data, $sub['id'], $form_id );
+								echo implode(" | ", $row_actions);
+								?>
+							</div>
+						</td>
+					<?php
+						do_action( 'ninja_forms_view_sub_table_row', $form_id, $sub['id'] );
+						$x = 0;
+						while($x <= $col_count){
+							if(isset($field_results[$x]['id'])){
+							$field_id = $field_results[$x]['id'];
+						?>
 
-						<td id="ninja_forms_sub_<?php echo $sub['id'];?>_field_<?php echo $field_id;?>">
-						<?php
-							if ( is_array( $data ) ) {
-								foreach( $data as $d ) {
-									if ( $field_id == $d['field_id'] ) {
-										/**
-										 * ninja_forms_view_sub_td hook
-										 * hook in here to format the submission table data cells
-										 *
-										 * @hooked ninja_forms_strip_sub_td_slashes - 10
-										 * @hooked ninja_forms_strip_sub_td_tags - 20
-										 */
-										$user_value = apply_filters('ninja_forms_view_sub_td', $d['user_value'], $d['field_id'], $sub['id'] );
+							<td id="ninja_forms_sub_<?php echo $sub['id'];?>_field_<?php echo $field_id;?>">
+							<?php
+								if ( is_array( $data ) ) {
+									foreach( $data as $d ) {
+										if ( $field_id == $d['field_id'] ) {
+											/**
+											 * ninja_forms_view_sub_td hook
+											 * hook in here to format the submission table data cells
+											 *
+											 * @hooked ninja_forms_strip_sub_td_slashes - 10
+											 * @hooked ninja_forms_strip_sub_td_tags - 20
+											 */
+											$user_value = apply_filters('ninja_forms_view_sub_td', $d['user_value'], $d['field_id'], $sub['id'] );
 
-										if(is_array($user_value) AND !empty($user_value)){
-											$y = 1;
-											foreach($user_value as $val){
-												echo ninja_forms_stripslashes_deep($val);
-												if($y != count($user_value)){
-													echo ", ";
+											if(is_array($user_value) AND !empty($user_value)){
+												$y = 1;
+												foreach($user_value as $val){
+													echo ninja_forms_stripslashes_deep($val);
+													if($y != count($user_value)){
+														echo ", ";
+													}
+													$y++;
 												}
-												$y++;
+											}else{
+												echo stripslashes($user_value);
 											}
-										}else{
-											echo stripslashes($user_value);
 										}
 									}
 								}
+							?>
+							</td>
+						<?php
 							}
-						?>
-						</td>
-					<?php
+							$x++;
 						}
-						$x++;
-					}
-				?>
+					?>
 
-				</tr>
-				<?php
+					</tr>
+					<?php					
+				}
 			}
 		}else if($edit_sub_form == 1){
 			$sub_row = ninja_forms_get_sub_by_id($sub_id);
@@ -532,7 +536,7 @@ function ninja_forms_edit_sub_save_values(){
 
 	$sub_id = $ninja_forms_processing->get_form_setting( 'sub_id' );
 	$form_id = $ninja_forms_processing->get_form_ID();
-	$user_id = $ninja_forms_processing->get_user_ID();
+	//$user_id = $ninja_forms_processing->get_user_ID();
 
 	$sub_row = ninja_forms_get_sub_by_id( $sub_id );
 	if( isset( $sub_row['status'] ) ){
@@ -558,7 +562,7 @@ function ninja_forms_edit_sub_save_values(){
 
 	$args = array(
 		'form_id' => $form_id,
-		'user_id' => $user_id,
+		//'user_id' => $user_id,
 		'status' => $status,
 		'action' => $action,
 		'data' => serialize( $sub_data ),
@@ -718,7 +722,7 @@ function ninja_forms_sub_table_row_actions_edit( $row_actions, $data, $sub_id, $
 	// turn on the output buffer
 	ob_start();
 	?>
-	<span class="edit"><a href="<?php echo $edit_link;?>" id="ninja_forms_sub_<?php echo $sub['id'];?>" class="ninja-forms-view-sub"><?php _e('Edit', 'ninja-forms' ); ?></a></span>
+	<span class="edit"><a href="<?php echo $edit_link;?>" id="ninja_forms_sub_<?php echo $sub_id;?>" class="ninja-forms-view-sub"><?php _e('Edit', 'ninja-forms' ); ?></a></span>
 	<?php
 	$action = ob_get_clean();
 

@@ -205,6 +205,14 @@ function ninja_forms_tab_addons(){
             'link' => 'http://ninjaforms.com/downloads/table-editor/',
             'plugin' => 'ninja-forms-table-editor/ninja-forms-table-editor.php',
             'docs' => 'http://ninjaforms.com/documentation/extension-docs/table-editor/',
+        ),        
+        array (
+            'title' => __( 'Stripe', 'ninja-forms' ),
+            'image' => 'http://ninjaforms.com/wp-content/uploads/edd/2013/09/stripe-300x121.png',
+            'content' => __( 'Use Stripe to accept payments using your Ninja Forms.', 'ninja-forms' ),
+            'link' => 'http://ninjaforms.com/downloads/stripe/',
+            'plugin' => 'ninja-forms-stripe/stripe.php',
+            'docs' => 'http://ninjaforms.com/documentation/extension-docs/stripe/',
         ),
     );
 

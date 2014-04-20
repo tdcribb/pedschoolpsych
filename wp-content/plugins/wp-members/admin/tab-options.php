@@ -24,7 +24,10 @@
  * @param array $wpmem_settings
  */
 function wpmem_a_build_options( $wpmem_settings )
-{ ?>
+{ 
+	$admin_email = apply_filters( 'wpmem_notify_addr', get_option( 'admin_email' ) );
+	$chg_email   = __( sprintf( '%sChange%s or %sFilter%s this address', '<a href="' . site_url( 'wp-admin/options-general.php', 'admin' ) . '">', '</a>', '<a href="http://rocketgeek.com/plugins/wp-members/users-guide/filter-hooks/wpmem_notify_addr/">', '</a>' ), 'wp-members' );
+?>
 	<div class="metabox-holder has-right-sidebar">
 	
 		<div class="inner-sidebar">
@@ -50,38 +53,46 @@ function wpmem_a_build_options( $wpmem_settings )
 								array(__('Block Posts by default','wp-members'),'wpmem_settings_block_posts',__('Note: Posts can still be individually blocked or unblocked at the article level','wp-members')),
 								array(__('Block Pages by default','wp-members'),'wpmem_settings_block_pages',__('Note: Pages can still be individually blocked or unblocked at the article level','wp-members')),
 								array(__('Show excerpts','wp-members'),'wpmem_settings_show_excerpts',__('Shows excerpted content above the login/registration on both Posts and Pages','wp-members')),
-								array(__('Notify admin','wp-members'),'wpmem_settings_notify',__('Sends email to admin for each new registration?','wp-members')),
+								array(__('Notify admin','wp-members'),'wpmem_settings_notify',sprintf(__('Notify %s for each new registration? %s','wp-members'),$admin_email,$chg_email)),
 								array(__('Moderate registration','wp-members'),'wpmem_settings_moderate',__('Holds new registrations for admin approval','wp-members')),
 								array(__('Use reCAPTCHA','wp-members'),'wpmem_settings_captcha',__('Turns on CAPTCHA for registration','wp-members')),
-								array(__('Turn off registration','wp-members'),'wpmem_settings_turnoff',__('Turns off the registration process, only allows login','wp-members')),
-								array(__('Legacy forms','wp-members'),'wpmem_settings_legacy',__('Uses the pre-2.5.1 table-based forms (leave off to use CSS table-less forms)','wp-members')),
+								array(__('Hide registration','wp-members'),'wpmem_settings_turnoff',__('Removes the registration form from blocked content','wp-members')),
+								array('','',''),
 								array(__('Time-based expiration','wp-members'),'wpmem_settings_time_exp',__('Allows for access to expire','wp-members')),
 								array(__('Trial period','wp-members'),'wpmem_settings_trial',__('Allows for a trial period','wp-members')),
 								array(__('Ignore warning messages','wp-members'),'wpmem_settings_ignore_warnings',__('Ignores WP-Members warning messages in the admin panel','wp-members'))
-								); ?>
-							<?php for( $row = 0; $row < count( $arr ); $row++ ) { ?>
-							<?php if( ( $row < 8 || $row > 9 ) || ( WPMEM_EXP_MODULE == true ) ) { ?>
+								);
+							for( $row = 0; $row < count( $arr ); $row++ ) {
+							  if( $row != 7 ) {
+								if( ( $row < 8 || $row > 9 ) || ( WPMEM_EXP_MODULE == true ) ) { ?>
 							  <li>
 								<label><?php echo $arr[$row][0]; ?></label>
 								<?php if (WPMEM_DEBUG == true) { echo $wpmem_settings[$row+1]; } ?>
 								<input name="<?php echo $arr[$row][1]; ?>" type="checkbox" id="<?php echo $arr[$row][1]; ?>" value="1" <?php if( $wpmem_settings[$row+1] == 1 ) { echo "checked"; }?> />&nbsp;&nbsp;
 								<?php if( $arr[$row][2] ) { ?><span class="description"><?php echo $arr[$row][2]; ?></span><?php } ?>
 							  </li>
-							  <?php } ?>
-							  <?php } ?>
+							  <?php }
+							  }
+							} ?>
 							<?php $attribution = get_option( 'wpmembers_attrib' ); ?>
 							  <li>
 								<label><?php _e( 'Attribution', 'wp-members' ); ?></label>
 								<input name="attribution" type="checkbox" id="attribution" value="1" <?php if( $attribution == 1 ) { echo "checked"; }?> />&nbsp;&nbsp;
 								<span class="description"><?php _e( 'Attribution is appreciated!  Display "powered by" link on register form?', 'wp-members' ); ?></span>
 							  </li>
+							<?php $auto_ex = get_option( 'wpmembers_autoex' ); ?>
+							  <li>
+							    <label><?php _e( 'Auto Excerpt:', 'wp-members' ); ?></label>
+								<input type="checkbox" name="wpmem_autoex" value="1" <?php if( $auto_ex['auto_ex'] == 1 ) { echo "checked"; } ?> />&nbsp;&nbsp;&nbsp;&nbsp;<?php _e( 'Number of words in excerpt:', 'wp-members' ); ?> <input name="wpmem_autoex_len" type="text" size="5" value="<?php if( $auto_ex['auto_ex_len'] ) { echo $auto_ex['auto_ex_len']; } ?>" />&nbsp;<span class="description"><?php _e( 'Optional', 'wp-members' ); ?>. <?php _e( 'Automatically creates an excerpt', 'wp-members' ); ?></span>
+							  </li>
+							<h3><?php _e( 'Pages', 'wp-members' ); ?></h3>
 							  <?php $wpmem_msurl = get_option( 'wpmembers_msurl' );
 							  if( ! $wpmem_msurl ) { $wpmem_msurl = "http://"; } ?>
 							  <li>
 								<label><?php _e( 'User Profile Page:', 'wp-members' ); ?></label>
 								<select name="wpmem_settings_mspage">
 								<?php wpmem_admin_page_list( $wpmem_msurl ); ?>
-								</select><br />
+								</select>&nbsp;<span class="description"><?php _e( 'For creating a forgot password link in the login form', 'wp-members' ); ?></span><br />
 								<label>&nbsp;</label>
 								<input class="regular-text code" type="text" name="wpmem_settings_msurl" value="<?php echo $wpmem_msurl; ?>" size="50" />&nbsp;<span class="description"><?php _e( 'Optional', 'wp-members' ); ?></span>
 							  </li>
@@ -91,11 +102,12 @@ function wpmem_a_build_options( $wpmem_settings )
 								<label><?php _e( 'Register Page:', 'wp-members' ); ?></label>
 								<select name="wpmem_settings_regpage">
 									<?php wpmem_admin_page_list( $wpmem_regurl ); ?>
-								</select><br />
+								</select>&nbsp;<span class="description"><?php _e( 'For creating a register link in the login form', 'wp-members' ); ?></span><br />
 								<label>&nbsp;</label>	
 								<input class="regular-text code" type="text" name="wpmem_settings_regurl" value="<?php echo $wpmem_regurl; ?>" size="50" />&nbsp;<span class="description"><?php _e( 'Optional', 'wp-members' ); ?></span>
 							  </li>
 							  <?php $wpmem_style = get_option( 'wpmembers_style' ); ?>
+							<h3><?php _e( 'Stylesheet', 'wp-members' ); ?></h3>
 							  <li>
 							    <label><?php _e( 'Stylesheet:', 'wp-members' ); ?></label>
 								<select name="wpmem_settings_style">
@@ -108,16 +120,9 @@ function wpmem_a_build_options( $wpmem_settings )
 								<label><?php _e( 'Custom Stylesheet:', 'wp-members' ); ?></label>
 								<input class="regular-text code" type="text" name="wpmem_settings_cssurl" value="<?php echo $wpmem_cssurl; ?>" size="50" />&nbsp;<span class="description"><?php _e( 'Optional', 'wp-members' ); ?></span>
 							  </li>
-							  <?php $auto_ex = get_option( 'wpmembers_autoex' ); ?>
-							  <li>
-							    <label><?php _e( 'Auto Excerpt:', 'wp-members' ); ?></label>
-								<input type="checkbox" name="wpmem_autoex" value="1" <?php if( $auto_ex['auto_ex'] == 1 ) { echo "checked"; } ?> />&nbsp;&nbsp;&nbsp;&nbsp;<?php _e( 'Number of words in excerpt:', 'wp-members' ); ?> <input name="wpmem_autoex_len" type="text" size="5" value="<?php if( $auto_ex['auto_ex_len'] ) { echo $auto_ex['auto_ex_len']; } ?>" />&nbsp;<span class="description"><?php _e( 'Optional', 'wp-members' ); ?>. <?php _e( 'Automatically creates an excerpt', 'wp-members' ); ?></span>
-							  </li>
-							  <li>
-								<label>&nbsp;</label>
+								<br /></br />
 								<input type="hidden" name="wpmem_admin_a" value="update_settings">
 								<input type="submit" name="UpdateSettings"  class="button-primary" value="<?php _e( 'Update Settings', 'wp-members' ); ?> &raquo;" /> 
-							  </li>
 							</ul>
 						</form>
 					</div><!-- .inside -->
@@ -235,20 +240,29 @@ function wpmem_update_options()
  * Create the stylesheet dropdown selection
  *
  * @since 2.8
- *
- * @uses apply_filters Calls wpmem_admin_style_list can hook into the list to include your own stylesheets.
  */
 function wpmem_admin_style_list()
 {
 	$val  = get_option( 'wpmembers_style', null );
 	$list = array(
-		'Twenty Ten'      => WPMEM_DIR . 'css/wp-members.css',
-		'Twenty Eleven'   => WPMEM_DIR . 'css/wp-members-2011.css',
-		'Twenty Twelve'   => WPMEM_DIR . 'css/wp-members-2012.css',
-		'Twenty Thirteen' => WPMEM_DIR . 'css/wp-members-2013.css',
-		'Twenty Fourteen' => WPMEM_DIR . 'css/wp-members-2014.css',
-		'Kubrick'         => WPMEM_DIR . 'css/wp-members-kubrick.css'
+		'No Float'                   => WPMEM_DIR . 'css/generic-no-float.css',
+		'Rigid'                      => WPMEM_DIR . 'css/generic-rigid.css',
+		'Twenty Ten'                 => WPMEM_DIR . 'css/wp-members.css',
+		'Twenty Eleven'              => WPMEM_DIR . 'css/wp-members-2011.css',
+		'Twenty Twelve'              => WPMEM_DIR . 'css/wp-members-2012.css',
+		'Twenty Thirteen'            => WPMEM_DIR . 'css/wp-members-2013.css',
+		'Twenty Fourteen'            => WPMEM_DIR . 'css/wp-members-2014.css',
+		'Twenty Fourteen - no float' => WPMEM_DIR . 'css/wp-members-2014-no-float.css',
+		'Kubrick'                    => WPMEM_DIR . 'css/wp-members-kubrick.css',
 	);
+	
+	/**
+	 * Filters the list of stylesheets in the plugin options dropdown.
+	 *
+	 * @since 2.8.0
+	 *
+	 * @param array $list An array of stylesheets that can be applied to the plugin's forms.
+	 */
 	$list = apply_filters( 'wpmem_admin_style_list', $list );
 
 	foreach( $list as $name => $location ) {
@@ -266,7 +280,7 @@ function wpmem_admin_style_list()
  *
  * @param string $val
  */
-function wpmem_admin_page_list( $val )
+function wpmem_admin_page_list( $val, $show_custom_url = true )
 {
 	echo '<option value="">'; echo esc_attr( __( 'Select a page' ) ); echo '</option>';
 	$pages = get_pages(); 
@@ -276,7 +290,7 @@ function wpmem_admin_page_list( $val )
 		$option .= '</option>';
 		echo $option;
 	}
-	echo '<option value="">'; _e( 'USE CUSTOM URL BELOW', 'wp-members' ); echo '</option>';
+	if( $show_custom_url ) { echo '<option value="">'; _e( 'USE CUSTOM URL BELOW', 'wp-members' ); echo '</option>'; }
 }
 
 /** End of File **/

@@ -165,7 +165,7 @@ function ninja_forms_output_tab_metabox($form_id = '', $slug, $metabox){
 			}
 			?>
 
-			<tr <?php if( $tr_class != '' ){ ?>class="<?php echo $tr_class;?>"<?php } ?> <?php if( $style != '' ){ ?> style="<?php echo $style;?>"<?php }?>>
+			<tr id="row_<?php echo $name;?>" <?php if( $tr_class != '' ){ ?>class="<?php echo $tr_class;?>"<?php } ?> <?php if( $style != '' ){ ?> style="<?php echo $style;?>"<?php }?>>
 				<?php if ( $s['type'] == 'desc' AND ! $label ) { ?>
 					 <td colspan="2">
 				<?php } else { ?>
@@ -389,6 +389,7 @@ function ninja_forms_output_tab_metabox($form_id = '', $slug, $metabox){
 						if( $s_display_function != '' ){
 							$arguments['form_id'] = $form_id;
 							$arguments['data'] = $current_settings;
+							$arguments['field'] = $s;
 							call_user_func_array( $s_display_function, $arguments );
 						}
 					}

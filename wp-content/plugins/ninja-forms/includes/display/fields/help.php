@@ -19,7 +19,7 @@ function ninja_forms_display_field_help( $field_id, $data ){
 		$help_text = '';
 	}
 
-	$help_text = htmlentities( $help_text );
+	$help_text = htmlspecialchars( $help_text );
 
 	if($show_help){
 		?>

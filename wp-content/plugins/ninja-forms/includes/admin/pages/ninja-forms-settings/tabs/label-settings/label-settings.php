@@ -78,8 +78,8 @@ function ninja_forms_register_label_settings_metabox(){
 			array(
 				'name' => 'process_label',
 				'type' => 'text',
-				'label' => __( 'Ajax submitting message', 'ninja-forms' ),
-				'desc' => __( 'If your form is submitted via ajax, what message should appear to let users know it is being processed?', 'ninja-forms' ),
+				'label' => __( 'Processing Submission Label', 'ninja-forms' ),
+				'desc' => __( 'This message is shown inside the submit button whenever a user clicks "submit" to let them know it is processing.', 'ninja-forms' ),
 			),
 		),
 	);

@@ -126,13 +126,8 @@ function ninja_forms_display_js( $form_id, $local_vars = '' ) {
 		}
 
 		// Loop through our fields again looking for calc fields that are totals.
-		foreach( $fields as $field_id => $user_value ){
-			if ( isset ( $ninja_forms_loading ) ) {
-				$field = $ninja_forms_loading->get_field_settings( $field_id );
-			} else {
-				$field = $ninja_forms_processing->get_field_settings( $field_id );
-			}
-			
+		foreach( $fields as $field ){
+
 			if ( isset ( $field['id'] ) ) {
 				$field_id = $field['id'];
 			} else {
@@ -145,10 +140,11 @@ function ninja_forms_display_js( $form_id, $local_vars = '' ) {
 				$field_type = '';
 			}
 
-
 			if ( $field_type == '_calc' ) {
+
 				if ( isset ( $field['data']['payment_total'] ) AND $field['data']['payment_total'] == 1 ) {
 					if ( $sub_total AND $tax AND $field['data']['calc_method'] == 'auto' ) {
+						
 						$calc_fields[$field_id]['method'] = 'eq';
 						$calc_fields[$field_id]['eq'] = 'field_'.$sub_total.' + ( field_'.$sub_total.' * field_'.$tax.' )';
 						$calc_eq = true;

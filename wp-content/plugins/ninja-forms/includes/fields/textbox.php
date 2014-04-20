@@ -199,6 +199,10 @@ function ninja_forms_field_text_display( $field_id, $data ){
 	global $current_user;
 	$field_class = ninja_forms_get_field_class( $field_id );
 
+	if ( isset( $data['email'] ) ) {
+		$field_class .= ' email';
+	}
+
 	if(isset($data['default_value'])){
 		$default_value = $data['default_value'];
 	}else{

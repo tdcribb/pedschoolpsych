@@ -86,7 +86,7 @@ function ninja_forms_field_timed_submit_display($field_id, $data){
 
 	<input id="ninja_forms_field_<?php echo $field_id;?>_js" name="ninja_forms_field_<?php echo $field_id;?>[no-js]" type="hidden" value="1" rel="<?php echo $field_id;?>_js" class="no-js" />
 
-	<button type="submit" name="ninja_forms_field_<?php echo $field_id;?>[timer]" class="<?php echo $field_class;?> countdown-timer" id="ninja_forms_field_<?php echo $field_id;?>" value="<?php echo $countdown;?>" rel="<?php echo $field_id;?>" data-countdown="<?php echo $countdown;?>" data-text="<?php esc_attr_e( $submit_text );?>"><?php echo $label ;?>
+	<button type="submit" name="ninja_forms_field_<?php echo $field_id;?>[timer]" class="<?php echo $field_class;?> countdown-timer" id="ninja_forms_field_<?php echo $field_id;?>" value="<?php echo $countdown;?>" rel="<?php echo $field_id;?>" data-countdown="<?php echo $countdown;?>" data-text="<?php esc_attr_e( $submit_text );?>"><?php echo $label ;?></button>
 
 	<?php
 

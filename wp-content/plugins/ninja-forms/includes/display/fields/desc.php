@@ -50,8 +50,8 @@ add_action( 'ninja_forms_display_before_field', 'ninja_forms_add_field_desc', 10
 
 function ninja_forms_display_field_desc( $field_id, $data ){
 	$plugin_settings = nf_get_settings();
-
-	if ( isset( $data['desc_text'] ) ) {
+	
+	if ( ( isset( $data['show_desc'] ) and $data['show_desc'] == 1 ) and isset( $data['desc_text'] ) ) {
 		echo '<div class="ninja-forms-field-description">';
 			echo do_shortcode( wpautop( $data['desc_text'] ) );
 		echo '</div>';

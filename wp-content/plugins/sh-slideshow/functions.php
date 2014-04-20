@@ -30,11 +30,11 @@ function sh_manage_slideshow(){
 			if($result):
 				echo '<div id="message" class="updated fade">Successfully added new slideshow '.$_REQUEST['sname'].'.</div>';
 			else:
-				echo '<div id="message" class="error fade">Error appear.</div>';
+				echo '<div id="message" class="error fade">Error appear in adding new slideshow.</div>';
 			endif;
 		endif;
 
-		require_once('pager.php');
+		require_once('page.php');
 		$pagesize = 20;
 		$linksize = 5;
 		$page = new page();
@@ -111,10 +111,10 @@ function shslideshow_settings($id){
 			if($wpdb->query($sql)):
 				echo '<div id="message" class="updated fade">Successfully updated.</div>';
 			else:
-				echo '<div id="message" class="error fade">Error appear.</div>';
+				echo '<div id="message" class="error fade">Update failed.</div>';
 			endif;
 		else:
-			echo '<div id="message" class="error fade">Error appear.</div>';
+			echo '<div id="message" class="error fade">Slideshow ID missing.</div>';
 		endif;
 	endif;
 	$sql = 'select * from '.$setting_table.' where id = '.$id;
@@ -393,14 +393,19 @@ function shslideshow_slides($id){
 		$slides = $_REQUEST['slide'];
 		$i = 1;
 		$wpdb->query($wpdb->prepare('delete from '.$slides_table.' where slideshow = %d', $_REQUEST['sid']));
-		foreach($slides as $slide):
-			$result = $wpdb->query($wpdb->prepare('insert into '.$slides_table.' (slideshow,slide,weight,link_url,custom_url) values (%s,%s,%d,%s,%s)',$_REQUEST['sid'],$slide,$i,$_REQUEST['slide_link'][$i-1],$_REQUEST['custom_url'][$i-1]));
-			$i++;
-		endforeach;
-		if($result):
-			echo '<div id="message" class="updated fade">Successfully updated.</div>';
+		if($slides):
+			foreach($slides as $slide):
+				$result = $wpdb->query($wpdb->prepare('insert into '.$slides_table.' (slideshow,slide,weight,link_url,custom_url) values (%s,%s,%d,%s,%s)',$_REQUEST['sid'],$slide,$i,$_REQUEST['slide_link'][$i-1],$_REQUEST['custom_url'][$i-1]));
+				$i++;
+			endforeach;
+			
+			if($result):
+				echo '<div id="message" class="updated fade">Successfully updated.</div>';
+			else:
+				echo '<div id="message" class="error fade">Error appear to save slides.</div>';
+			endif;
 		else:
-			echo '<div id="message" class="error fade">Error appear.</div>';
+			echo '<div id="message" class="updated fade">Successfully updated.</div>';
 		endif;
 	endif;
 	$slideshow = $wpdb->get_row('select name from '.$setting_table.' where id='.$id);
@@ -460,6 +465,7 @@ jQuery(document).ready(function(){
                         ?>
                         </select>
                         <input type="text" name="custom_url[]" class="manual_link regular-text" value="<?php echo $slide->custom_url; ?>">
+			<span class="del_sh_slide" onclick="del_slide(<?php echo $slide->id; ?>,<?php echo $slide->weight; ?>)">Delete</span>
                     </td>
                 </tr>
      	<?php

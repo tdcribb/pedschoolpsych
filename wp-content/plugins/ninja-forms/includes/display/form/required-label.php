@@ -25,7 +25,7 @@ function ninja_forms_display_req_items( $form_id ){
 			}
 		}
 	}
-	if( $output ){
+	if( $output && $req_div_label != '' ){
 		?>
 		<div class="ninja-forms-required-items"><?php echo $req_div_label;?></div>
 		<?php

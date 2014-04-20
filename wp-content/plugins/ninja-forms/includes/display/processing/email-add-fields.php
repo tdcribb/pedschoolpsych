@@ -36,7 +36,7 @@ function ninja_forms_filter_email_add_fields( $message ){
 	if(is_array($all_fields) AND !empty($all_fields)){
 		if($email_type == 'html'){
 			$message .= "<br><br>";
-			$message .= __( 'User Submitted Values:', 'ninja-forms' );
+			$message .= apply_filters( 'nf_email_user_values_title', __( 'User Submitted Values:', 'ninja-forms' ) );
 			$message .= "<table>";
 		}else{
 			$message = str_replace("<p>", "\r\n", $message);
@@ -45,7 +45,7 @@ function ninja_forms_filter_email_add_fields( $message ){
 			$message = str_replace("<br />", "\r\n", $message);
 			$message = strip_tags($message);
 			$message .= "\r\n \r\n";
-			$message .= __('User Submitted Values:', 'ninja-forms');
+			$message .= apply_filters( 'nf_email_user_values_title', __( 'User Submitted Values:', 'ninja-forms' ) );
 			$message .= "\r\n";
 		}
 		foreach( $all_fields as $field_id => $user_value ){

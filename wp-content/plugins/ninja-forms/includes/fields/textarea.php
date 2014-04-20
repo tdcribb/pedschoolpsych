@@ -58,6 +58,8 @@ function ninja_forms_field_textarea_display($field_id, $data){
 		$default_value = '';
 	}
 
+	$default_value = htmlspecialchars_decode( $default_value );
+
 	if(isset($data['textarea_rte'])){
 		$textarea_rte = $data['textarea_rte'];
 	}else{

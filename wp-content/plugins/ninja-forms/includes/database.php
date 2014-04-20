@@ -648,6 +648,7 @@ function ninja_forms_set_transient(){
 	$transient['form_id'] = $form_id;
 	$transient['field_values'] = $ninja_forms_processing->get_all_fields();
 	$transient['form_settings'] = $ninja_forms_processing->get_all_form_settings();
+	$transient['extra_values'] = $ninja_forms_processing->get_all_extras();
 	$all_fields_settings = array();
 	if ( $ninja_forms_processing->get_all_fields() ) {
 		foreach ( $ninja_forms_processing->get_all_fields() as $field_id => $user_value ) {

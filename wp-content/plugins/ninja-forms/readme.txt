@@ -2,8 +2,8 @@
 Contributors: kstover, jameslaws, daveshine, mordauk, bftrick, helgatheviking
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
 Requires at least: 3.6
-Tested up to: 3.8.1
-Stable tag: 2.5.1
+Tested up to: 3.9
+Stable tag: 2.6.1
 License: GPLv2 or later
 
 Forms created with a simple drag and drop interface. Contact forms, Email collection forms, or any other form you want on your WordPress site.
@@ -44,7 +44,7 @@ Please feel free to visit our [demo site](http://demo.wpninjas.com/ninja-forms/)
 * [Save User Progress](http://ninjaforms.com/downloads/save-user-progress/) - Let your users save their progress and return later to finish filling out the form.
 * [Conditional Logic](http://ninjaforms.com/downloads/conditional-logic/) - Create "smart" forms that show or hide fields based upon user input. Even add a value to a dropdown list when a user selects a specific value from another list.
 * [Front-End Posting](http://ninjaforms.com/downloads/front-end-posting/) - Use Ninja Forms to create posts from the front-end. These can be added to any post type, including custom post types, and users can select categories and tags.
-* [Layout & Styles](http://ninjaforms.com/downloads/layout-styles/) - Use Ninja Forms to create amzing form layouts and styles right from your WordPress admin.
+* [Layout & Styles](http://ninjaforms.com/downloads/layout-styles/) - Use Ninja Forms to create amazing form layouts and styles right from your WordPress admin.
 * [MailChimp](http://ninjaforms.com/downloads/mail-chimp/) - The MailChimp extension allows you to quickly create newsletter signup forms for your MailChimp account using the power and flexibility that Ninja Forms provides.
 * [Campaign Monitor](http://ninjaforms.com/downloads/campaign-monitor/) - The Campaign Monitor extension allows you to quickly create newsletter signup forms for your Campaign Monitor account using the power and flexibility that Ninja Forms provides.
 * [User Analytics](http://ninjaforms.com/downloads/user-analytics/) - The User Analytics extension will help website owners understand how hot a lead is based on extra data automatically collected about the user.
@@ -76,41 +76,74 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 2.5.1 =
-
-*Bugs:*
-
-* Fixed a major bug that removed the "Number" field.
-
-= 2.5 =
-
-*Features:*
-
-* Submission Limiting - Allows users to limit the number of submissions a form can receive.
-* Character Counts - Added a "Character Count" option to textboxes and textareas.
-
-*Bugs:*
-
-* Fixed a bug that prevented the pagination from working on view submission pages.
-* Fixed a bug with the default value filter.
-* Fixed a bug that prevented forms from showing when they were on the landing page of another form.
-* Fixed a bug that caused required fields to go unprocessed when extensions were deactivated.
-* Fixed a bug that caused list fields to pre-populate incorrectly in some instances.
-* Removed some console logs that could cause crashes in Internet Explorer.
-* Fixed a bug that caused forms to improperly clear when submitted.
-* Fixed a bug that prevented empty success messages from being saved.
+= 2.6.1 =
 
 *Changes:*
 
-* Add some CSS to help prevent theme from breaking left and right labels when they add display:block to the label element.
-* All settings are now fetched via a proxy function.
-* Added a wrapper for the entire form display (and everything that goes with it).
+* Modified the call to wp_editor on the Field Settings tab so that it is compatible with WordPress 3.9.
+* Added more security to prevent forms from being spammed.
+* Added additional items to the system status page.
+
+*Bugs:*
+
+* Fixed a php notice that could occur when using the inside label position.
+* Calc fields that use advanced equations should now function properly when referencing other advanced calculation fields.
 
 == Requested Features ==
 
 If you have any feature requests, please feel free to visit [ninjaforms.com](http://ninjaforms.com) and let us know about it.
 
 == Changelog ==
+
+= 2.6.1 =
+
+*Changes:*
+
+* Modified the call to wp_editor on the Field Settings tab so that it is compatible with WordPress 3.9.
+* Added more security to prevent forms from being spammed.
+* Added additional items to the system status page.
+
+*Bugs:*
+
+* Fixed a php notice that could occur when using the inside label position.
+* Calc fields that use advanced equations should now function properly when referencing other advanced calculation fields.
+
+= 2.6 =
+
+*Changes:*
+
+* The "Processing Message" above the form has been removed in favour of changing the text of the submit button and disabling it.
+* This change in processing notification will make it easier for users to see that a submission is being processed and prevent them from clicking the "submit" button again.
+* Updated the label of the "Processing" label to make it clearer.
+* Added a credit card field that can be enabled by extensions that need to use it.
+
+*Bugs:*
+
+* Fixed a bug introduced in version 2.5.3 which prevented Sessions from starting properly on some server setups.
+* Fixed some PHP warnings/notices.
+* List items should now properly escape html when displayed.
+
+= 2.5.3 =
+
+*Bugs:*
+
+* Fixed a bug that could prevent AJAX submissions from working properly.
+
+= 2.5.2 =
+
+*Bugs:*
+
+* Fixed various bugs with the default label position. It should now always default to above.
+* Fixed a bug that could cause Admin emails to appear to have attachments when they didn't.
+* Required fields can now have a value of 0.
+* Fixed a bug with list fields and calculations that could cause them not to pre-populate properly.
+* Fixed a bug that could cause incomplete submissions to show in the dashboard for those using the Save Progress extension or the Multi-Part Forms extension.
+
+= 2.5.1 =
+
+*Bugs:*
+
+* Fixed a major bug that removed the "Number" field.
 
 = 2.5 =
 

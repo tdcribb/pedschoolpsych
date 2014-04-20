@@ -43,7 +43,7 @@ function ninja_forms_req_fields_process(){
 					$req_symbol = '*';
 				}
 
-				if ( isset ( $field_data['req'] ) and $field_data['req'] == 1 and $field_data['label_pos'] == 'inside' ) {
+				if ( isset ( $field_data['req'] ) and $field_data['req'] == 1 and $label_pos == 'inside' ) {
 					$field_data['label'] .= ' '.$req_symbol;
 				}
 
@@ -59,7 +59,12 @@ function ninja_forms_req_fields_process(){
 				$req_validation = $reg_type['req_validation'];
 
 				$plugin_settings = nf_get_settings();
-				$req_field_error = $plugin_settings['req_field_error'];
+				if ( isset ( $plugin_settings['req_field_error'] ) ) {
+					$req_field_error = __( $plugin_settings['req_field_error'], 'ninja-forms' );
+				} else {
+					$req_field_error = __( 'This is a required field.', 'ninja-forms' );
+				}
+				
 				if( isset( $plugin_settings['req_error_label'] ) ){
 					$req_error_label = __( $plugin_settings['req_error_label'], 'ninja-forms' );
 				}else{
@@ -83,7 +88,7 @@ function ninja_forms_req_fields_process(){
 								$ninja_forms_processing->add_error('required-general', $req_error_label, 'general');
 							}
 						}else{
-							if( empty( $user_value ) ){
+							if( $user_value === '' ){
 								$ninja_forms_processing->add_error('required-'.$field_id, $req_field_error, $field_id);
 								$ninja_forms_processing->add_error('required-general', $req_error_label, 'general');
 							}

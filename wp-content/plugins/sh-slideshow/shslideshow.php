@@ -3,7 +3,7 @@
 Plugin Name: SH Slideshow
 Plugin URI: http://wordpress.org/plugins/sh-slideshow/
 Description: Slideshow banner with different effects which is using jQuery Cycle Plugin. Simply for normal users and advanced users.
-Version: 4.1
+Version: 4.3
 Author: Sam Hoe
 Author URI: sg.linkedin.com/pub/sam-hoe/37/604/894/
 License: GPLv2 or later
@@ -129,7 +129,7 @@ function _shslideshow_create_table($setting_table, $slides_table){
 	if($sql_delete){
 		$wpdb->query( $sql_delete );
 	}
-	
+
 	if($wpdb->get_var("SHOW TABLES LIKE 'sh_slides'") == 'sh_slides'){
 		$sql = "CREATE TABLE $slides_table SELECT * FROM sh_slides;";
 		$sql_delete = "DROP TABLE IF EXISTS sh_slides";
@@ -301,7 +301,10 @@ function shslideshow($id){
  *
  */
 function shslideshow_shortcode($atts,$content = null){
+	ob_start();
 	echo _shslideshow($atts['id']);
+	$content = ob_get_clean();
+	return $content;
 }
 
 add_shortcode('shslideshow', 'shslideshow_shortcode');

@@ -4,7 +4,7 @@ Donate link:
 Tags: SH Slideshow, slideshow, slide, banner, slide banner, ajax, jQuery, Cycle, jQuery Cycle
 Requires at least: 3.0.1
 Tested up to: 3.5.1
-Stable tag: 4.1
+Stable tag: 4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -46,6 +46,14 @@ Please email to samhoamt@gmail.com.
 4. **Administrator Settings** - Administrator can give the permission to other user levels.
 
 == Changelog ==
+
+= 4.3 =
+
+* Fix slideshow mis-position bug in visual editor.
+
+= 4.2 =
+
+* Fix bugs.
 
 = 4.1 =
 
