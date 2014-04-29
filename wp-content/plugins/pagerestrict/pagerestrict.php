@@ -57,9 +57,10 @@ function pr_get_page_content() {
 		';
 		
 		if ( get_option('users_can_register') )
-			$pr_page_content .= '	<a href="/register">Register</a> | ';
+			$pr_page_content .= '';
 
-		$pr_page_content .= '<a href="' . get_bloginfo ( 'wpurl' ) . '/wp-login.php?action=lostpassword">Lost your password?</a>
+		$pr_page_content .= '<a href="' . get_bloginfo ( 'wpurl' ) . '/wp-login.php?action=lostpassword">Lost your password?</a></br></br>
+		If you are a client of Pediatric School Psychology, please contact a representative to receive access to the forms you need. </br><a href="/contact">Click this link to Contact Pediatric School Psychology.</a>
 		</p>
 		';
 

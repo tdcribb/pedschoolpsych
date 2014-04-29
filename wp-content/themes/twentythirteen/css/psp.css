@@ -99,7 +99,7 @@ ul.nav-menu ul a:hover, .nav-menu ul ul a:hover {background:#5476a4; color:#fff;
 
 .service-list-container {position:relative; margin:auto; width:900px; height:400px; padding-top:50px;}
 
-.serv-title-cont {position:relative; float:left; width:300px; padding:10px; min-height:75px;}
+.serv-title-cont {position:relative; float:left; width:450px; padding:10px; min-height:85px;}
 .serv-title {position:relative; float:left; width:100%; text-align:center; font-size:14px; font-weight:bold;}
 .serv-excerpt {position:relative; float:left; width:80%; margin-left:10%; font-size:12px; margin-top:25px; text-align:center; min-height:100px;}
 .serv-title span {text-decoration:none; color:#5476A4; cursor:pointer;}
@@ -133,7 +133,7 @@ ul.nav-menu ul a:hover, .nav-menu ul ul a:hover {background:#5476a4; color:#fff;
 /* FORMS */
 .form-link {font-size:18px;}
 .forms-page .prof-serv-cont {min-height:250px;}
-.forms-page .prof-serv-cont .service-list-container {height:200px;}
+.forms-page .prof-serv-cont .service-list-container {height:215px;}
 .checkbox-wrap, .list-multi-wrap {min-height:250px; float:left;}
 .ninja-forms-all-fields-wrap .list-checkbox-wrap {min-height:50px; float:left; border:1px solid #000; margin-bottom:0px; width:100%;}
 .ninja-forms-all-fields-wrap .list-checkbox-wrap ul {padding:0px; position:relative; float:left; margin:10px 0px;}
